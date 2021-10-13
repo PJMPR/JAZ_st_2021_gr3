@@ -64,32 +64,6 @@ public class ObjectPropertyProvider {
         List<Method> getterList = getPublicSetters(clazz);
         ArrayList<Field> mList = new ArrayList<>();
         Field[] fields = clazz.getFields();
-        boolean isInField = false;
-        for (Field field:fields
-             ) {
-            for (Method method: setterList
-                 ) {
-                if(method.getName().toLowerCase(Locale.ROOT).contains(field.getName().toLowerCase(Locale.ROOT))){
-                    isInField = true;
-                }
-
-
-            }
-
-            for (Method method: getterList
-            ) {
-                if(method.getName().toLowerCase(Locale.ROOT).contains(field.getName().toLowerCase(Locale.ROOT))){
-                    isInField = true;
-                }
-
-
-            }
-            if(isInField)
-            {
-                mList.add(field);
-            }
-            isInField = false;
-        }
 
         return Arrays.stream(clazz.getDeclaredFields()).toList();
 
