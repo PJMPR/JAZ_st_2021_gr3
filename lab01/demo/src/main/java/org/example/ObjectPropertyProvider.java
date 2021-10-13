@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+
 public class ObjectPropertyProvider {
 
     public List<Method> getPublicGetters(Class<?> clazz){
@@ -49,6 +50,7 @@ public class ObjectPropertyProvider {
 
         return methodsList.stream().toList();
         //return Arrays.stream(clazz.getDeclaredMethods()).toList();
+
     }
 
 
