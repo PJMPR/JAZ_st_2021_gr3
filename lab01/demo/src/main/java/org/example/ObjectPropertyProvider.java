@@ -3,14 +3,18 @@ package org.example;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+
+
 import java.util.Arrays;
 import java.util.List;
 
 public class ObjectPropertyProvider {
 
     public List<Method> getPublicGetters(Class<?> clazz){
+
         //Method m = Arrays.stream(clazz.getDeclaredMethods()).findFirst().or(null).get();
         ArrayList<Method> myList = new ArrayList<>();
         Method[] methods = clazz.getDeclaredMethods();
@@ -30,10 +34,17 @@ public class ObjectPropertyProvider {
 
         return myList.stream().toList();
 
+       
+
+
+   
+
+
     }
 
 
     public List<Method> getPublicSetters(Class<?> clazz){
+
         ArrayList<Method> myList = new ArrayList<>();
         Method[] methods = clazz.getDeclaredMethods();
 
@@ -50,10 +61,15 @@ public class ObjectPropertyProvider {
         }
 
         return myList.stream().toList();
+
+
+        
+
     }
 
 
     public List<Field> getFieldsForPublicProperties(Class<?> clazz){
+
         ArrayList<Method> myList = new ArrayList<>();
         Method[] methods = clazz.getDeclaredMethods();
         for (Method method : methods){
@@ -65,6 +81,8 @@ public class ObjectPropertyProvider {
                 }
             }
         }
+=======
+
 
         return Arrays.stream(clazz.getDeclaredFields()).toList();
 
