@@ -28,7 +28,7 @@ public class ObjectPropertyProviderTests {
                 .stream().map(x->x.getName()).toList();
         assertThat(setters, hasSize(3));
         assertThat(setters, hasItems("setName","setNumber","setDone"));
-        assertThat(setters, not(hasItems("setNothing","setInt","emptyMethod","emptyMethodReturn0","emptyMethodWihParam","setSomthing")));
+        assertThat(setters, not(hasItems("setNothing","setInt","emptyMethod","emptyMethodReturn0","emptyMethodWihParam","setSomething")));
     }
 
     @Test
@@ -39,4 +39,7 @@ public class ObjectPropertyProviderTests {
         assertThat(fields, hasItems("name","number","isDone", "status"));
         assertThat(fields, not(hasItems("value", "something")));
     }
+
+
+
 }

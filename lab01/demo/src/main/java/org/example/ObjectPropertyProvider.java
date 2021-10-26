@@ -21,13 +21,13 @@ public class ObjectPropertyProvider {
 
     public List<Method> getPublicGetters(Class<?> clazz) {
 
-        Predicate<Method> startWithGetorIs = x -> x.getName().startsWith("get") || x.getName().startsWith("is");
+        Predicate<Method> startWithGetOrIs = x -> x.getName().startsWith("get") || x.getName().startsWith("is");
         Predicate<Method> isPublic = x -> Modifier.isPublic(x.getModifiers());
         Predicate<Method> parameterCount0 = x -> x.getParameterCount() == 0;
         Predicate<Method> returnNotVoidType = x -> !x.getReturnType().equals(Void.TYPE);
 
         return Arrays.stream(clazz.getDeclaredMethods())
-                .filter(startWithGetorIs)
+                .filter(startWithGetOrIs)
                 .filter(isPublic)
                 .filter(parameterCount0)
                 .filter(returnNotVoidType)
@@ -54,17 +54,22 @@ public class ObjectPropertyProvider {
 
         Predicate<Method> startWithSet = x -> x.getName().startsWith("set");
         Predicate<Method> isPublic = x -> Modifier.isPublic(x.getModifiers());
+        Predicate<Method> parameterCount1 = x -> x.getParameterCount() == 1;
+        Predicate<Method> returnVoidType = x -> x.getReturnType().equals(Void.TYPE);
 
         return Arrays.stream(clazz.getDeclaredMethods())
                 .filter(startWithSet)
                 .filter(isPublic)
+                .filter(parameterCount1)
+                .filter(returnVoidType)
                 .toList();
     }
 
 
     public List<Field> getFieldsForPublicProperties(Class<?> clazz) {
+        return Arrays.stream(clazz.getDeclaredFields()).toList()
 
-        return Arrays.stream(clazz.getDeclaredFields()).toList();
+        ;
 
     }
 
