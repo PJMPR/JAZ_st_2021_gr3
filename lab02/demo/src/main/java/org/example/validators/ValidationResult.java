@@ -10,6 +10,12 @@ public class ValidationResult{
     private boolean isValid;
     private Map<String, List<String>> notValidFields = new HashMap<String, List<String>>();
 
+    public ValidationResult(Object validatedObject, boolean isValid, Map<String, List<String>> notValidFields) {
+        this.validatedObject = validatedObject;
+        this.isValid = isValid;
+        this.notValidFields = notValidFields;
+    }
+
     public Object getValidatedObject() {
         return validatedObject;
     }
