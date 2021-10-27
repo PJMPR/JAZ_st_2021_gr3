@@ -4,74 +4,103 @@ package org.example;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Locale;
 
 public class ObjectPropertyProvider {
 
-    /**
-     * @param clazz
-     * @return //    Metoda do wybierania „getterów”
-     * //    Public
-     * //    Zaczyna się od get lub is (w wypadku boolean)
-     * //    Bez parametrów
-     * //    Zwraca pole pod które jest podpięta
-     */
-
-    public List<Method> getPublicGetters(Class<?> clazz) {
-
-        Predicate<Method> startWithGetOrIs = x -> x.getName().startsWith("get") || x.getName().startsWith("is");
-        Predicate<Method> isPublic = x -> Modifier.isPublic(x.getModifiers());
-        Predicate<Method> parameterCount0 = x -> x.getParameterCount() == 0;
-        Predicate<Method> returnNotVoidType = x -> !x.getReturnType().equals(Void.TYPE);
-
+    public List<Method> getPublicGetters(Class<?> clazz){
+/*
+        List<Method> methods = Arrays.stream(clazz.getDeclaredMethods()).toList();
+        List<Method> result = new ArrayList<>();
+        for (Method m : methods) {
+            if(new SimpleMethod(m).isGetter())
+                result.add(m);
+        }
+ */
         return Arrays.stream(clazz.getDeclaredMethods())
-                .filter(startWithGetOrIs)
-                .filter(isPublic)
-                .filter(parameterCount0)
-                .filter(returnNotVoidType)
-                .toList();
-
-    }
-
-    /**
-     *
-     * @param clazz
-     * @return
-     *
-     * //
-     * //    Metoda do wybierania „setterów”
-     * //    Public
-     * //    Zaczyna się od set
-     * //    Posiada tylko jeden parametr
-     * //    Jest typu void
-     * //
-     * //    Pole „field” w klasie
-     * //    Posiada getter lub seter lub oba
-     */
-    public List<Method> getPublicSetters(Class<?> clazz) {
-
-        Predicate<Method> startWithSet = x -> x.getName().startsWith("set");
-        Predicate<Method> isPublic = x -> Modifier.isPublic(x.getModifiers());
-        Predicate<Method> parameterCount1 = x -> x.getParameterCount() == 1;
-        Predicate<Method> returnVoidType = x -> x.getReturnType().equals(Void.TYPE);
-
-        return Arrays.stream(clazz.getDeclaredMethods())
-                .filter(startWithSet)
-                .filter(isPublic)
-                .filter(parameterCount1)
-                .filter(returnVoidType)
+                .filter(m->new SimpleMethod(m).isGetter())
                 .toList();
     }
 
 
-    public List<Field> getFieldsForPublicProperties(Class<?> clazz) {
-        return Arrays.stream(clazz.getDeclaredFields()).toList()
+    public List<Method> getPublicSetters(Class<?> clazz){
 
-        ;
-
+        return Arrays.stream(clazz.getDeclaredMethods())
+                .filter(m->new SimpleMethod(m).isSetter())
+                .toList();
     }
 
 
+    public List<Field> getFieldsForPublicProperties(Class<?> clazz){
+
+        List<Method> props = getPublicGetters(clazz);
+        props.addAll(getPublicSetters(clazz));
+
+        return Arrays.stream(clazz.getDeclaredFields())
+                .filter(field->
+                        props
+                            .stream()
+                            .map(p-> getFieldName(p))
+                            .anyMatch(name-> namesMatch(field, name)))
+                .toList();
+    }
+
+    private boolean namesMatch(Field field, String name) {
+        return name
+                .equals(field.getName()
+                        .toLowerCase(Locale.ROOT));
+    }
+
+    private String getFieldName(Method p) {
+        return new SimpleMethod(p).getFieldName()
+                .toLowerCase(Locale.ROOT);
+    }
+
+
+    private class SimpleMethod {
+        Method method;
+        public SimpleMethod(Method m) {
+            method = m;
+        }
+
+        public boolean isPublic() {
+            return Modifier.isPublic(method.getModifiers());
+        }
+
+        public boolean startsWith(String prefix) {
+            return method.getName().startsWith(prefix);
+        }
+
+        public boolean isVoid() {
+            return method.getReturnType().equals(void.class);
+
+        }
+
+        public boolean hasParamsCount(int n) {
+            return method.getParameterCount()==n;
+        }
+
+        public boolean isGetter(){
+            return isPublic() && (startsWith("get")||startsWith("is"))
+                    && !isVoid() && hasParamsCount(0);
+        }
+
+        public boolean isSetter(){
+            return isPublic()
+                    && startsWith("set")
+                    && isVoid()
+                    && hasParamsCount(1);
+        }
+
+        public String getFieldName(){
+            if(startsWith("get") || startsWith("set"))
+                return method.getName().substring(3);
+            if(startsWith("is"))
+                return method.getName().substring(2);
+            return "";
+        }
+    }
 }
