@@ -29,5 +29,4 @@ public class ValidationResult{
     public Map<String, List<String>> getNotValidFields() {
         return notValidFields;
     }
-
 }

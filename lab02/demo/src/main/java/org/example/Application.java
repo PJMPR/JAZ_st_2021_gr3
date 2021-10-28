@@ -1,6 +1,7 @@
 package org.example;
 
 
+import org.example.validators.ValidationResult;
 import org.example.validators.Validator;
 
 import java.lang.reflect.Field;
