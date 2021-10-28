@@ -1,5 +1,8 @@
 package org.example.validators;
 
+import org.example.annotations.Range;
+import org.example.annotations.Regex;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
