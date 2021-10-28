@@ -1,7 +1,6 @@
 package org.example.validators;
 
 
-import org.example.annotations.NotNull;
 import org.example.annotations.Range;
 import org.example.annotations.Regex;
 
@@ -68,5 +67,6 @@ public class Validator {
 
 
         return result;
+
     }
 }
