@@ -7,8 +7,8 @@ import java.util.Map;
 public class ValidationResult{
 
     private Object validatedObject;
+    private final Map<String, List<String>> notValidFields = new HashMap<>();
     private boolean isValid;
-    private Map<String, List<String>> notValidFields = new HashMap<String, List<String>>();
 
     public Object getValidatedObject() {
         return validatedObject;
