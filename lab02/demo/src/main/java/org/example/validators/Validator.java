@@ -12,7 +12,7 @@ public class Validator {
                 .map(field -> new AnnotatedField(field, object))
                 .collect(Collectors.toMap(
                         AnnotatedField::getName,
-                        field -> AnnotationValidator.combinedAnnotationValidator.getErrors(List.of(field), object).toList()
+                        field -> AnnotationValidator.combinedAnnotationValidator.getErrors(List.of(field), object)
                 ));
 
         notValidFields.values().removeIf(List::isEmpty);
