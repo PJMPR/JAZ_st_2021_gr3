@@ -10,6 +10,11 @@ public class ValidationResult{
     private boolean isValid;
     private Map<String, List<String>> notValidFields = new HashMap<String, List<String>>();
 
+
+    public void setNotValidFields(Map<String, List<String>> notValidFields) {
+        this.notValidFields = notValidFields;
+    }
+
     public Object getValidatedObject() {
         return validatedObject;
     }
@@ -29,5 +34,6 @@ public class ValidationResult{
     public Map<String, List<String>> getNotValidFields() {
         return notValidFields;
     }
+
 
 }

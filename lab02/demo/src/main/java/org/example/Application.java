@@ -18,6 +18,8 @@ public class Application {
         new Validator().validate(new Sample());
         new Validator().validate(new Object());
     }
+
+
 }
 
 
