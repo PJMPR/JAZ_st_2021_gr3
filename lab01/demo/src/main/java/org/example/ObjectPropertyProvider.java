@@ -13,6 +13,7 @@ import java.util.Locale;
 public class ObjectPropertyProvider {
 
     public List<Method> getPublicGetters(Class<?> clazz){
+
         //Method m = Arrays.stream(clazz.getDeclaredMethods()).findFirst().or(null).get();
         ArrayList methodsList = new ArrayList();
 
@@ -30,6 +31,7 @@ public class ObjectPropertyProvider {
 
         //return Arrays.stream(clazz.getDeclaredMethods()).toList();
         return methodsList.stream().toList();
+
     }
 
 
@@ -51,10 +53,12 @@ public class ObjectPropertyProvider {
         return methodsList.stream().toList();
         //return Arrays.stream(clazz.getDeclaredMethods()).toList();
 
+
     }
 
 
     public List<Field> getFieldsForPublicProperties(Class<?> clazz){
+
         ArrayList fieldList = new ArrayList();
 
         List<Method> getterList = getPublicGetters(clazz);
@@ -80,8 +84,11 @@ public class ObjectPropertyProvider {
             isInList=false;
         }
         return fieldList.stream().toList();
-        //return Arrays.stream(clazz.getDeclaredFields()).toList();
 
+
+    private String getFieldName(Method p) {
+        return new SimpleMethod(p).getFieldName()
+                .toLowerCase(Locale.ROOT);
     }
 
 }

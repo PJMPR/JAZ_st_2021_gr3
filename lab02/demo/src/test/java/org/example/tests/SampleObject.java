@@ -4,8 +4,10 @@ import org.example.annotations.*;
 
 public class SampleObject {
 
+
     @NotNull()
     private String name;
+
 
     @NotNull
     @Regex(pattern = "^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$", message = "email should be in correct format")
@@ -20,8 +22,10 @@ public class SampleObject {
         this.number = number;
     }
 
+
     public SampleObject() {
     }
+
 
     public String getName() {
         return name;

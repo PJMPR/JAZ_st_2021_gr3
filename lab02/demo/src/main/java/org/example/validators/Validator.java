@@ -1,5 +1,6 @@
 package org.example.validators;
 
+
 import java.util.*;
 
 public class Validator {
@@ -24,3 +25,4 @@ public class Validator {
         return validationResult;
     }
 }
+
