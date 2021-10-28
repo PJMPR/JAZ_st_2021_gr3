@@ -15,12 +15,14 @@ public class SampleObject {
     @Range(min=0, max=10)
     private int number;
 
+    // Constructor
     public SampleObject(String name, String email, int number) {
         this.name = name;
         this.email = email;
         this.number = number;
     }
 
+    // Getters and setters (nothing special here)
     public String getName() {
         return name;
     }
