@@ -62,6 +62,6 @@ public class ValidationHelper {
     }
 
     public boolean rangeCheck() throws IllegalAccessException {
-        return (field.isAnnotationPresent(Range.class) && isBetween(getMaxFromRange(), getMaxFromRange()));
+        return (field.isAnnotationPresent(Range.class) && isBetween(getMinFromRange(), getMaxFromRange()));
     }
 }
