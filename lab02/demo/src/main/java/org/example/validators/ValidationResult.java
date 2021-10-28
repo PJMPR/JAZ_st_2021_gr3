@@ -31,4 +31,12 @@ public class ValidationResult{
         return validatedObject;
     }
 
+    @Override
+    public String toString() {
+        return "ValidationResult{" +
+                "validatedObject=" + validatedObject +
+                ", isValid=" + isValid +
+                ", notValidFields=" + notValidFields +
+                '}';
+    }
 }
