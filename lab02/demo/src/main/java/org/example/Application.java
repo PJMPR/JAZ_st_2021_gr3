@@ -1,9 +1,13 @@
 package org.example;
 
 
+import org.example.annotations.Range;
+import org.example.validators.ValidationResult;
 import org.example.validators.Validator;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
@@ -17,6 +21,7 @@ public class Application {
         f.get(obj)==null);
         new Validator().validate(new Sample());
         new Validator().validate(new Object());
+
     }
 }
 

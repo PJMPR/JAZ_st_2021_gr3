@@ -11,4 +11,5 @@ import java.lang.annotation.Target;
 public @interface Range {
     int min();
     int max();
+    String message() default "number is out of range [0,10]";
 }
