@@ -12,20 +12,20 @@ public interface AnnotationValidator {
     AnnotationValidator notNullAnnotation = (fields, object) -> fields
             .filter(field -> field.hasAnnotation(NotNull.class))
             .filter(AnnotatedField::isNull)
-            .map(field -> (NotNull) field.getAnnotation(NotNull.class))
+            .map(field -> field.getAnnotation(NotNull.class))
             .map(NotNull::message);
 
     AnnotationValidator regexAnnotation = (fields, object) -> fields
             .filter(field -> field.hasAnnotation(Regex.class))
             .filter(AnnotatedField::isString)
-            .filter(field -> field.notMatchesRegex(((Regex) field.getAnnotation(Regex.class)).pattern()))
-            .map(field -> (Regex) field.getAnnotation(Regex.class))
+            .filter(field -> field.notMatchesRegex(field.getAnnotation(Regex.class).pattern()))
+            .map(field -> field.getAnnotation(Regex.class))
             .map(Regex::message);
 
     AnnotationValidator rangeAnnotation = (fields, object) -> fields
             .filter(field -> field.hasAnnotation(Range.class))
             .filter(AnnotatedField::isNumber)
             .filter(AnnotatedField::isNotWithinAnnotatedRange)
-            .map(field -> (Range) field.getAnnotation(Range.class))
+            .map(field -> field.getAnnotation(Range.class))
             .map(range -> "number is out of range [%d,%d]".formatted(range.min(), range.max()));
 }

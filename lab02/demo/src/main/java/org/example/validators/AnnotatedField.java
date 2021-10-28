@@ -65,7 +65,8 @@ public class AnnotatedField {
                 .anyMatch(type -> type.equals(annotation));
     }
 
-    public <T extends Annotation> Annotation getAnnotation(Class<T> clazz) {
+
+    public <T extends Annotation> T getAnnotation(Class<T> clazz) {
         return this.base.getAnnotation(clazz);
     }
 }
