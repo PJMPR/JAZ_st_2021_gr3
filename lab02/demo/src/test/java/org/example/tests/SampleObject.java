@@ -4,7 +4,7 @@ import org.example.annotations.*;
 
 public class SampleObject {
 
-    @NotNull
+    @NotNull(isNull = false)
     private String name;
 
 

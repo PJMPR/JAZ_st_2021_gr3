@@ -17,6 +17,16 @@ public class Application {
         f.get(obj)==null);
         new Validator().validate(new Sample());
         new Validator().validate(new Object());
+
+
+    }
+    public boolean isNull(){
+        Class c = Class.forName("org.example.Application");
+        Field[] fieldlist = c.getDeclaredFields();
+        for (int i = 0; i < fieldlist.length; i++) {
+            Field fld = fieldlist[i];
+            System.out.println(fld.getModifiers());
+        }
     }
 }
 
