@@ -40,7 +40,7 @@ public class TestValidator {
     }
 
     @Test
-    public void test_if_object_with_wrong_number_renge_is_invalid(){
+    public void test_if_object_with_wrong_number_range_is_invalid(){
 
         SampleObject sample = new SampleObject("jan", "jan@wp.pl", -1);
         ValidationResult result = validator.validate(sample);
