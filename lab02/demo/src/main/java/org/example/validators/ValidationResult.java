@@ -32,18 +32,3 @@ public class ValidationResult{
     }
     
 }
-
-    public Object getValidatedObject() {
-        return validatedObject;
-    }
-
-    @Override
-    public String toString() {
-        return "ValidationResult{" +
-                "validatedObject=" + validatedObject +
-                ", isValid=" + isValid +
-                ", notValidFields=" + notValidFields +
-                '}';
-    }
-}
-
