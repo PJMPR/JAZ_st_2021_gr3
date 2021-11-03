@@ -1,8 +1,6 @@
 package org.example;
 
 
-import org.example.validators.Validator;
-
 import java.lang.reflect.Field;
 
 public class Application {
@@ -15,8 +13,6 @@ public class Application {
         Field f = Sample.class.getDeclaredField("name");
         System.out.println(
         f.get(obj)==null);
-        new Validator().validate(new Sample());
-        new Validator().validate(new Object());
     }
 }
 
