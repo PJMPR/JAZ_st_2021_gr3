@@ -12,6 +12,13 @@ public class Results {
     private int pages;
     private int currentPage;
 
+    public Results(List<Person> items, List<FunctionResult> functionResults, int pages, int currentPage) {
+        this.items = items;
+        this.functionResults = functionResults;
+        this.pages = pages;
+        this.currentPage = currentPage;
+    }
+
     public List<Person> getItems() {
         return items;
     }
