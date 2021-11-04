@@ -7,6 +7,8 @@ public class FunctionResult {
     private String fieldName;
     private double value;
 
+    public FunctionResult(double value) {}
+
     public Funcs getFunction() {
         return function;
     }
