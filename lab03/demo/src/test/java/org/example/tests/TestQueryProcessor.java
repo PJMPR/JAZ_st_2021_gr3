@@ -29,7 +29,7 @@ public class TestQueryProcessor {
         params.getFunctions().add(new FunctionsParameters("income", Funcs.SUM));
         params.getFunctions().add(new FunctionsParameters("income", Funcs.AVARAGE));
 
-        Results result = new QueryProcessor().GetResults(params);
+        Results result = new QueryProcessor().getResults(params);
         assertThat(result.getItems(),hasSize(3));
         assertThat(result.getItems(),hasItems(
                 People.AnnaBuda,
@@ -46,7 +46,7 @@ public class TestQueryProcessor {
     {
         SearchParameters params = new SearchParameters();
         params.setPage(new Page(3, 2));
-        Results results = new QueryProcessor().GetResults(params);
+        Results results = new QueryProcessor().getResults(params);
         assertThat(results.getItems(), hasSize(3));
         assertThat(results.getItems(),hasItems(
                 People.AnnaBuda,
@@ -60,7 +60,7 @@ public class TestQueryProcessor {
 
         SearchParameters params = new SearchParameters();
         params.setName("Jan");
-        Results results = new QueryProcessor().GetResults(params);
+        Results results = new QueryProcessor().getResults(params);
 
         assertThat(results.getItems(), hasSize(2));
         assertThat(results.getItems(),hasItems(
