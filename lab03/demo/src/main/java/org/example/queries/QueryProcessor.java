@@ -5,8 +5,9 @@ import org.example.queries.filters.*;
 import org.example.queries.results.FunctionResult;
 import org.example.queries.results.Results;
 import org.example.queries.search.SearchParameters;
+import org.example.queries.utils.PersonFieldGetter;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class QueryProcessor {
@@ -25,7 +26,21 @@ public class QueryProcessor {
         final var items = combinedFilter.filter(People.Data);
 
         final var functionResults = parameters.getFunctions().stream()
-                        .map(functionsParameters -> new FunctionResult(functionsParameters.getFunction(), functionsParameters.getFieldName(), 0)).toList();
+                        .map(functionsParameters -> new FunctionResult(
+                                functionsParameters.getFunction(),
+                                functionsParameters.getFieldName(),
+                                switch (functionsParameters.getFunction()) {
+                                    case SUM -> items.stream()
+                                            .map(person -> PersonFieldGetter.getFieldValueAsNumber(functionsParameters.getFieldName(), person))
+                                            .mapToDouble(Number::doubleValue)
+                                            .sum();
+                                    case AVARAGE -> items.stream()
+                                            .map(person -> PersonFieldGetter.getFieldValueAsNumber(functionsParameters.getFieldName(), person))
+                                            .mapToDouble(Number::doubleValue)
+                                            .average().orElse(0);
+                                }
+                        ))
+                        .toList();
 
         final int pageSize = parameters.getPage().getSize();
         final double totalPeople = items.size();
