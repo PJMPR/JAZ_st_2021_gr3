@@ -8,13 +8,13 @@ import java.util.List;
 public class SearchParameters {
     private String name;
     private String surname;
-    private int ageFrom;
-    private int ageTo;
-    private double incomeFrom;
-    private double incomeTo;
+    private int ageFrom = Integer.MIN_VALUE;
+    private int ageTo = Integer.MAX_VALUE;
+    private double incomeFrom = Double.MIN_VALUE;
+    private double incomeTo = Double.MAX_VALUE;
     private List<Gender> selectedGenders = new ArrayList<Gender>();
     private List<FunctionsParameters> functions = new ArrayList<FunctionsParameters>();
-    private Page page;
+    private Page page = new Page(Integer.MAX_VALUE, 1);
 
     public String getName() {
         return name;

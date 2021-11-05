@@ -2,7 +2,7 @@ package org.example.queries.search;
 
 public class Page {
 
-    private int size;
+    private int size ;
     private int pageNumber;
 
     public Page(int size, int pageNumber) {
