@@ -27,8 +27,10 @@ public class TestValidator {
     }
 
 
+
     @Test
     public void test_if_object_with_incorrect_email_is_invalid() throws IllegalAccessException {
+
 
 
         SampleObject sample = new SampleObject("jan", "a", 5);

@@ -9,7 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import org.example.validators.rules.*;
+
+import java.util.List;
+
 public class Validator {
+
 
     public <TClass> ValidationResult validate(TClass object) throws IllegalAccessException {
         ValidationResult result = new ValidationResult();

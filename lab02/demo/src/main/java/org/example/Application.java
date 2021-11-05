@@ -2,9 +2,11 @@ package org.example;
 
 
 
+
 import org.example.annotations.Range;
 import org.example.validators.ValidationResult;
 import org.example.validators.Validator;
+
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -21,8 +23,10 @@ public class Application {
         Field f = Sample.class.getDeclaredField("name");
         System.out.println(
         f.get(obj)==null);
+
         new Validator().validate(new Sample());
         new Validator().validate(new Object());
+
 
 
     }

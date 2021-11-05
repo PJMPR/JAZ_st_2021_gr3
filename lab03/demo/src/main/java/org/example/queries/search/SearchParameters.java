@@ -8,6 +8,7 @@ import java.util.List;
 public class SearchParameters {
     private String name;
     private String surname;
+
     private int ageFrom = Integer.MIN_VALUE;
     private int ageTo = Integer.MAX_VALUE;
     private double incomeFrom = Double.MIN_VALUE;
@@ -15,6 +16,7 @@ public class SearchParameters {
     private List<Gender> selectedGenders = new ArrayList<Gender>();
     private List<FunctionsParameters> functions = new ArrayList<FunctionsParameters>();
     private Page page = new Page(Integer.MAX_VALUE, 1);
+
 
     public String getName() {
         return name;
