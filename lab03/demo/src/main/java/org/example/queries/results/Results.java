@@ -43,4 +43,5 @@ public class Results {
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
     }
+
 }

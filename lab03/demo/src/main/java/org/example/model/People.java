@@ -18,7 +18,7 @@ public class People {
     public final static Person ZdzislawSzydlowski=
             new Person("zdzislaw", "szydlowski", 38, 6800, Gender.MALE);
     public final static Person JanAnrusowski=
-            new Person("jan", "anrusowki", 49, 1250, Gender.MALE);
+            new Person("jan", "anrusowski", 49, 1250, Gender.MALE);
     public final static Person JanuszKowalski=
             new Person("janusz", "kowalski", 18, 1000, Gender.MALE);
     public final static Person DanutaKowalska=
