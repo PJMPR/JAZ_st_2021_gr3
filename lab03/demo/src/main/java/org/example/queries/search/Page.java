@@ -2,6 +2,11 @@ package org.example.queries.search;
 
 public class Page {
 
+    // Defined how page work
+    // Page have size
+    // And number
+    // For each page can exist only "size" records
+
     private int size;
     private int pageNumber;
 

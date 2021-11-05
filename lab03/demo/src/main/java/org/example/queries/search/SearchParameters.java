@@ -12,8 +12,8 @@ public class SearchParameters {
     private int ageTo;
     private double incomeFrom;
     private double incomeTo;
-    private List<Gender> selectedGenders = new ArrayList<Gender>();
-    private List<FunctionsParameters> functions = new ArrayList<FunctionsParameters>();
+    private List<Gender> selectedGenders = new ArrayList<>();
+    private List<FunctionsParameters> functions = new ArrayList<>();
     private Page page;
 
     public String getName() {
