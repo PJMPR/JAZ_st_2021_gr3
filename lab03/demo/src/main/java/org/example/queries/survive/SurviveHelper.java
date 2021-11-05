@@ -26,7 +26,11 @@ public record SurviveHelper(SearchParameters searchParameters, Results results) 
     }
 
     public boolean incomeIsBetween(Person person) {
-        return (person.getIncome() <= searchParameters.getIncomeTo() && person.getIncome() >= searchParameters.getIncomeFrom());
+        if(searchParameters.getIncomeTo() != 0) {
+            return (person.getIncome() <= searchParameters.getIncomeTo() && person.getIncome() >= searchParameters.getIncomeFrom());
+        } else {
+            return (person.getIncome() >= searchParameters.getIncomeFrom());
+        }
     }
 
     public boolean isNamed(Person person) {
@@ -43,5 +47,8 @@ public record SurviveHelper(SearchParameters searchParameters, Results results) 
 
     public int getPageSize(){
         return searchParameters.getPage().getSize();
+    }
+    public boolean isSetPage(){
+        return (searchParameters.getPage() == null);
     }
 }

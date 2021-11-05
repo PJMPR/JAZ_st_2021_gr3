@@ -27,12 +27,12 @@ public class QueryProcessor {
         result.setItems(People.Data);
 
         //survivor.forEach(filter -> filter.doSelection(parameters, result));
-        new SurviveByAge().doSelection(parameters, result);
-        new SurviveByGender().doSelection(parameters, result);
-        new SurviveByIncome().doSelection(parameters, result);
-        new SurviveByName().doSelection(parameters, result);
-        new SurviveBySurname().doSelection(parameters, result);
-        new SurviveByPage().doSelection(parameters, result);
+        result.setItems(new SurviveByAge().doSelection(parameters, result));
+        result.setItems(new SurviveByGender().doSelection(parameters, result));
+        result.setItems(new SurviveByIncome().doSelection(parameters, result));
+        result.setItems(new SurviveByName().doSelection(parameters, result));
+        result.setItems(new SurviveBySurname().doSelection(parameters, result));
+        result.setItems(new SurviveByPage().doSelection(parameters, result));
 
         counterController.counterMaker();
 

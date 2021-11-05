@@ -15,7 +15,7 @@ public class SurviveByIncome implements SurvivorInterface {
         SurviveHelper surviveHelper = new SurviveHelper(searchParameters, results);
         List<Person> survivors = new ArrayList<>();
 
-        if(searchParameters.getIncomeTo() == 0){
+        if(searchParameters.getIncomeFrom() == 0){
             return surviveHelper.getPersons();
         }
 

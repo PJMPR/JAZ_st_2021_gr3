@@ -14,6 +14,6 @@ public class AverageAge implements CountersInterface {
         for(Person person: results.getItems()){
             totalSum += person.getAge();
         }
-        return new FunctionResult(Funcs.AVARAGE, "age", totalSum/results.getItems().size());
+        return new FunctionResult(Funcs.AVARAGE, "age", totalSum);
     }
 }

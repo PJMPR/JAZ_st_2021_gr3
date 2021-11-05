@@ -15,16 +15,16 @@ public class SurviveByPage implements SurvivorInterface {
     public List<Person> doSelection(SearchParameters searchParameters, Results results) {
         SurviveHelper surviveHelper = new SurviveHelper(searchParameters, results);
         HashMap<Integer, List<Person>> pager = new HashMap<>();
-        if(surviveHelper.getPageSize() > 0){
+        if(!surviveHelper.isSetPage()){
             int counter = 0;
             for(int i = 1 ; i <= surviveHelper.getPageNumber() ; i++){
                 List<Person> people = new ArrayList<>();
                 for(int j = 0 ; j < surviveHelper.getPageSize() ; j++){
-                    try{
+                    if(j >= surviveHelper.getPersons().size()){
+                        break;
+                    } else{
                         people.add(results.getItems().get(counter));
                         counter++;
-                    } catch (IndexOutOfBoundsException e){
-                        break;
                     }
                 }
                 pager.put(i, people);

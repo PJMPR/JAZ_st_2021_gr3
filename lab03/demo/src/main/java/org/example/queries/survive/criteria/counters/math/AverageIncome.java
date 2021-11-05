@@ -13,6 +13,6 @@ public class AverageIncome implements CountersInterface {
         for(Person person: results.getItems()){
             totalSum += person.getIncome();
         }
-        return new FunctionResult(Funcs.AVARAGE, "income", totalSum/results.getFunctionResults().size());
+        return new FunctionResult(Funcs.AVARAGE, "income", totalSum);
     }
 }
