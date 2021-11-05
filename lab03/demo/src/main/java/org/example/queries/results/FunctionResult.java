@@ -7,6 +7,9 @@ public class FunctionResult {
     private String fieldName;
     private double value;
 
+    public FunctionResult(Funcs function, String fieldName, double score) {
+    }
+
     public Funcs getFunction() {
         return function;
     }
