@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class TestQueryProcessor {
+public class                                                                                                                                                                                                                TestQueryProcessor {
 
     @Test
     public void test_should_check_if_data_is_properly_filtered(){
