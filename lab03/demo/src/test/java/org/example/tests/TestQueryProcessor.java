@@ -10,6 +10,8 @@ import org.example.queries.search.Page;
 import org.example.queries.search.SearchParameters;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -18,16 +20,16 @@ public class TestQueryProcessor {
     @Test
     public void test_should_check_if_data_is_properly_filtered(){
 
-        SearchParameters params =new SearchParameters();
+        SearchParameters params = new SearchParameters();
         params.setAgeFrom(20);
         params.setAgeTo(40);
         params.setIncomeFrom(2000);
         params.setPage(new Page(9,1));
         params.getSelectedGenders().add(Gender.FEMALE);
         params.getSelectedGenders().add(Gender.OTHER);
-        params.getFunctions().add(new FunctionsParameters("age", Funcs.AVARAGE));
+        params.getFunctions().add(new FunctionsParameters("age", Funcs.AVERAGE));
         params.getFunctions().add(new FunctionsParameters("income", Funcs.SUM));
-        params.getFunctions().add(new FunctionsParameters("income", Funcs.AVARAGE));
+        params.getFunctions().add(new FunctionsParameters("income", Funcs.AVERAGE));
 
         Results result = new QueryProcessor().GetResults(params);
         assertThat(result.getItems(),hasSize(3));
@@ -42,8 +44,7 @@ public class TestQueryProcessor {
     }
 
     @Test
-    public void test_should_check_if_paging_works()
-    {
+    public void test_should_check_if_paging_works() {
         SearchParameters params = new SearchParameters();
         params.setPage(new Page(3, 2));
         Results results = new QueryProcessor().GetResults(params);
@@ -59,7 +60,7 @@ public class TestQueryProcessor {
     public void test_should_check_if_search_by_name_works(){
 
         SearchParameters params = new SearchParameters();
-        params.setName("Jan");
+        params.setName("jan");
         Results results = new QueryProcessor().GetResults(params);
 
         assertThat(results.getItems(), hasSize(2));

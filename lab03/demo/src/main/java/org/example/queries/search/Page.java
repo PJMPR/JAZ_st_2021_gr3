@@ -1,5 +1,7 @@
 package org.example.queries.search;
 
+import org.example.queries.results.Results;
+
 public class Page {
 
     private int size;
@@ -24,5 +26,20 @@ public class Page {
 
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
+    }
+
+    public int calcElementsToSkip(Results results) {
+        return (results.getCurrentPage() - 1) * size;
+    }
+
+    public int calcNeededPages(Results result) {
+        if (size < result.getItems().size()) {
+            if (result.getItems().size() % size != 0) {
+                return result.getItems().size() / size + 1;
+            } else {
+                return result.getItems().size() / size;
+            }
+        }
+        return 1;
     }
 }

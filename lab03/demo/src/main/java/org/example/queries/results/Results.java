@@ -1,6 +1,7 @@
 package org.example.queries.results;
 
 import org.example.model.Person;
+import org.example.queries.search.Page;
 
 import java.util.ArrayList;
 import java.util.List;
