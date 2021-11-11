@@ -1,11 +1,17 @@
 package org.example.model;
 
-public class Dictionary {
+import com.opencsv.bean.CsvBindByPosition;
 
+public class Dictionary {
+    @CsvBindByPosition(position = 0)
     private int id;
+    @CsvBindByPosition(position = 1)
     private int intKey;
+    @CsvBindByPosition(position = 2)
     private String stringKey;
+    @CsvBindByPosition(position = 3)
     private String value;
+    @CsvBindByPosition(position = 4)
     private String dictionaryName;
 
     public Dictionary() {

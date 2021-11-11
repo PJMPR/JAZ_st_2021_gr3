@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -15,7 +16,7 @@ public class TestCache {
     @Test
     public void test_should_check_if_there_is_only_one_instance_of_cache(){
         List<Cache> caches = new ArrayList<>();
-        List.of(1,2,3,4,5,6,7,8,9,10).stream()
+        Stream.of(1,2,3,4,5,6,7,8,9,10)
                 .parallel().forEach((x)->{
                     caches.add(Cache.getInstance());
                 });
