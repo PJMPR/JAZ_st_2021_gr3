@@ -28,6 +28,7 @@ public class TestCache {
         Cache.getInstance().add("number", 1);
         Cache.getInstance().add("object", new Dictionary(1,2,"3","4","5"));
 
+
         String test = Cache.getInstance().get("test",String.class);
         int number = Cache.getInstance().get("number", Integer.class);
         Dictionary object = Cache.getInstance().get("object", Dictionary.class);
