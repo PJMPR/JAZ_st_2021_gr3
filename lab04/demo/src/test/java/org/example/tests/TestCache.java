@@ -24,13 +24,13 @@ public class TestCache {
 
     @Test
     public void test_should_check_adding_an_item_works_correctly(){
-        Cache.getInstance().add("test", "Test");
-        Cache.getInstance().add("number", 1);
-        Cache.getInstance().add("object", new Dictionary(1,2,"3","4","5"));
+        Cache.getInstance().putData("test", "Test");
+        Cache.getInstance().putData("number", 1);
+        Cache.getInstance().putData("object", new Dictionary(1,2,"3","4","5"));
 
-        String test = Cache.getInstance().get("test",String.class);
-        int number = Cache.getInstance().get("number", Integer.class);
-        Dictionary object = Cache.getInstance().get("object", Dictionary.class);
+        String test = Cache.getInstance().getData("test",String.class);
+        int number = Cache.getInstance().getData("number", Integer.class);
+        Dictionary object = Cache.getInstance().getData("object", Dictionary.class);
         assertThat(test, is("Test"));
         assertThat(number, is(1));
         assertThat(object.getDictionaryName(), is("5"));

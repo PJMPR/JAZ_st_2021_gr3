@@ -1,6 +1,10 @@
 package org.example.caching.loaders;
 
-public class DictionaryCacheLoader {
+import org.example.caching.CachedItem;
 
-    public void load(){}
+public class DictionaryCacheLoader implements CacheLoader {
+    @Override
+    public void load() throws NumberFormatException {
+        new CachedItem("dictionaries", new FileDataProvider().provide());
+    }
 }
