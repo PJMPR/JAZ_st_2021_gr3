@@ -1,5 +1,7 @@
 package org.example.model;
 
+
+
 public class Dictionary {
 
     private int id;
