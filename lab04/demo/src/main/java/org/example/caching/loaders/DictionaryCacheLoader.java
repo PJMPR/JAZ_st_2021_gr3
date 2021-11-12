@@ -1,6 +1,20 @@
 package org.example.caching.loaders;
 
-public class DictionaryCacheLoader {
+import java.util.List;
+import org.example.model.Dictionary;
+import org.example.caching.Cache;
+import org.example.caching.providers.DictionaryFileProvider;
 
-    public void load(){}
+public class DictionaryCacheLoader implements CacheLoader {
+    Cache cache = Cache.getInstance();
+
+    @Override
+    public void load() {
+        DictionaryFileProvider provider = new DictionaryFileProvider();
+        List<Dictionary> ItemList = provider.provideItems();
+
+        for (Dictionary item : ItemList) {
+            cache.add(provider.getFile(), item);
+        }
+    }
 }
