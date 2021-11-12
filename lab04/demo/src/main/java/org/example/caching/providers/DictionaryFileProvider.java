@@ -26,9 +26,9 @@ public class DictionaryFileProvider implements DictionaryCacheProvider {
 
     private static List<Dictionary> readFile() {
 
-        String filePath = "src/main/resources/dictionaries.csv";
+        String readFile = "src/main/resources/dictionaries.csv";
         List<Dictionary> dictionaryList = new ArrayList<>();
-        Path path = Paths.get(filePath);
+        Path path = Paths.get(readFile);
 
         try (BufferedReader bufferedReader = Files.newBufferedReader(path)) {
             String line = bufferedReader.readLine();
