@@ -9,7 +9,13 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Range {
+
     int min();
     int max();
     String message() default "number is out of range [0,10]";
+
+    String message() default "number is out of range [%d,%d]";
+    int min();
+    int max();
+
 }

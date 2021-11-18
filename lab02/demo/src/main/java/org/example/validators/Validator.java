@@ -9,7 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import org.example.validators.rules.*;
+
+import java.util.List;
+
 public class Validator {
+
 
     public <TClass> ValidationResult validate(TClass object) throws IllegalAccessException {
         ValidationResult result = new ValidationResult();
@@ -66,6 +71,21 @@ public class Validator {
 
 
 
+        return result;
+
+
+    List<ICheckValidationRule> rules =List.of(
+            new NotNullValidationRule(),
+            new RegexValidationRule(),
+            new RangeValidationRule()
+    );
+
+    public <TClass> ValidationResult validate(TClass object){
+
+        ValidationResult result = new ValidationResult();
+        result.setValidatedObject(object);
+        result.setValid(true);
+        rules.stream().forEach(rule->rule.ValidateRule(result));
         return result;
 
     }

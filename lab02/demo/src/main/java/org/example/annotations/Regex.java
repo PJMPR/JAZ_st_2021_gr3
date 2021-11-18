@@ -8,6 +8,12 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Regex {
+
     String pattern();
     String message() default "regex error";
+
+
+    String message() default "regex error";
+    String pattern();
+
 }
