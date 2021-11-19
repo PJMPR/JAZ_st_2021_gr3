@@ -1,5 +1,6 @@
 import Logger.Logger;
 import Strategy.*;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -9,6 +10,8 @@ public class SaveInvoker {
     Logger logger = new Logger();
 
     public void invoke(Class objectToInvokeMethodFrom,String name)  {
+        String log4jPath = "src/main/java/Logs/log4j.properties";
+        PropertyConfigurator.configure(log4jPath);
         try {
             Class c = Class.forName(objectToInvokeMethodFrom.getName());
             Object o = c.newInstance();
