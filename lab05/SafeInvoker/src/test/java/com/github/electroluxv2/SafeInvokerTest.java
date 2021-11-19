@@ -56,7 +56,7 @@ public class SafeInvokerTest {
 
     @Test
     public void askGoogleActionShouldLogResults() {
-        StringJoiner logs = new StringJoiner("");
+        final var logs = new StringJoiner("");
 
         SafeInvoker.logger.addHandler(new Handler() {
             @Override

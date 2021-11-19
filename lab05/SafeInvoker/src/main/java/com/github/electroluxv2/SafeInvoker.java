@@ -1,6 +1,5 @@
 package com.github.electroluxv2;
 
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,16 +26,16 @@ public enum SafeInvoker {
         }
     }
 
-    public void setActionForException(Class<? extends Exception> exception, Action action) {
+    public void setActionForException(final Class<? extends Exception> exception, final Action action) {
         actionRegistry.put(exception, action);
     }
 
-    public void invoke(UnsafeMethod unsafeMethod) {
-        AtomicBoolean actionLock = new AtomicBoolean(true);
+    public void invoke(final UnsafeMethod unsafeMethod) {
+        final var actionLock = new AtomicBoolean(true);
 
         try {
             unsafeMethod.invoke();
-        } catch (Exception exception) {
+        } catch (final Exception exception) {
             final var action = actionRegistry.getOrDefault(exception.getClass(), Action.NONE);
             logger.log(Level.INFO, "An %s occurred, invoking action.".formatted(exception.getClass().getName()), exception);
             action.invoke(unsafeMethod, exception, actionLock, logger);

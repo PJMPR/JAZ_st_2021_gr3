@@ -1,11 +1,9 @@
 package com.github.electroluxv2;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -15,7 +13,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public interface Action {
-    void invoke(final UnsafeMethod calledMethod, Exception cause, AtomicBoolean actionLock, Logger logger);
+    void invoke(final UnsafeMethod calledMethod, final Exception cause, final AtomicBoolean actionLock, final Logger logger);
 
     Action NONE = (calledMethod, cause, actionLock, logger) -> actionLock.set(false);
     Action repeatThreshold = (calledMethod, cause, actionLock, logger) -> {
@@ -39,7 +37,7 @@ public interface Action {
 
     Action askGoogleWhatToDo = (calledMethod, cause, actionLock, logger) -> {
         try {
-            String answers = Jsoup.connect("https://www.google.com/search?q=How+to+handle+java+%s+stackoverflow".formatted(cause.getClass().getSimpleName())).get().select("span:not([class!=\"\"])")
+            final String answers = Jsoup.connect("https://www.google.com/search?q=How+to+handle+java+%s+stackoverflow".formatted(cause.getClass().getSimpleName())).get().select("span:not([class!=\"\"])")
                 .stream()
                 .map(Element::text)
                 .flatMap(String::lines)
