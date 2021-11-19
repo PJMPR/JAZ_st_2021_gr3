@@ -47,6 +47,7 @@ public class TestQueryProcessor {
         SearchParameters params = new SearchParameters();
         params.setPage(new Page(3, 2));
         Results results = new QueryProcessor().GetResults(params);
+        assertThat(results.getCurrentPage(), is(2));
         assertThat(results.getItems(), hasSize(3));
         assertThat(results.getItems(),hasItems(
                 People.AnnaBuda,
