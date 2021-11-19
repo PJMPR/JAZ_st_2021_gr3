@@ -1,12 +1,14 @@
 package org.example.ExceptionHandlers;
 
+import org.example.Supplier;
+
 import java.util.concurrent.TimeoutException;
 
 public class TimeOut implements ErrorHandler {
 
     @Override
     public String getMessage() {
-        return "Timeout bro...";
+        return "Request Timeout";
     }
 
     @Override
@@ -15,7 +17,7 @@ public class TimeOut implements ErrorHandler {
     }
 
     @Override
-    public void whatNow(Object objOfMethod, String method) {
-        actionsInvokeByHandlers.reDo(objOfMethod, method);
+    public void whatNow(Supplier method) {
+        actions.canRepeat(method, 3);
     }
 }

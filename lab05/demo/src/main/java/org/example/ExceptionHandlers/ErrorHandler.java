@@ -1,25 +1,24 @@
 package org.example.ExceptionHandlers;
 
+import org.example.Logger;
+import org.example.Supplier;
+
 public interface ErrorHandler {
 
-    ActionsInvokeByHandlers actionsInvokeByHandlers = new ActionsInvokeByHandlers();
+    ActionsUsedByHandlers actions = new ActionsUsedByHandlers();
+    Logger logger = new Logger();
 
-    default String getMessage() {
-        return null;
-    }
+    String getMessage();
 
-    default Boolean canHandle(Exception e){
-        return false;
-    }
+    Boolean canHandle(Exception e);
 
-    default void whatNow(Object objOfMethod, String method){
+    void whatNow(Supplier method) throws Exception;
 
-    }
-
-    default void handle(Object objOfMethod, Exception err, String methodName){
+    default void handle(Supplier method, Exception err) throws Exception {
         if (canHandle(err)) {
             System.out.println(getMessage());
-            whatNow(objOfMethod, methodName);
+            logger.log(getMessage(), err);
+            whatNow(method);
         }
     }
 }

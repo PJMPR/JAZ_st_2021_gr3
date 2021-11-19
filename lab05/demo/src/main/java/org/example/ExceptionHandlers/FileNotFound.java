@@ -1,5 +1,7 @@
 package org.example.ExceptionHandlers;
 
+import org.example.Supplier;
+
 import java.io.FileNotFoundException;
 
 public class FileNotFound implements ErrorHandler {
@@ -15,7 +17,13 @@ public class FileNotFound implements ErrorHandler {
     }
 
     @Override
-    public void whatNow(Object objOfMethod, String method) {
-        actionsInvokeByHandlers.reDo(objOfMethod, method);
+    public void whatNow(Supplier method) {
+        if(!actions.canRepeat(method, 1)){
+            functionToDo();
         }
     }
+
+    public void functionToDo(){
+        System.out.println("Feature to do smth to program here");
+    }
+}

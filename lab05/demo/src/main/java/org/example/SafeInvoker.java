@@ -13,9 +13,14 @@ public class SafeInvoker {
             new TimeOut()
     );
 
-    public void invoke(Object objOfMethod, Exception e, String methodName) {
-        for (ErrorHandler handle: errorHandlers) {
-                handle.handle(objOfMethod,e, methodName);
+
+    public void invoke(Supplier method) throws Exception {
+        try{
+            method.get();
+        }catch (Exception err){
+            for (ErrorHandler handle: errorHandlers) {
+                handle.handle(method, err);
+            }
         }
     }
 }

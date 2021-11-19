@@ -5,15 +5,25 @@ import java.io.FileNotFoundException;
 import java.util.concurrent.TimeoutException;
 
 public class HandlersTests {
+
     SafeInvoker invoker = new SafeInvoker();
 
     @Test
-    public void FileNotFoundExceptionHandlerTest() {
-        invoker.invoke(this, new FileNotFoundException(), "FileNotFoundExceptionHandlerTest");
+    public void FileNotFoundExceptionHandlerTest() throws Exception {
+        invoker.invoke(() -> {
+            throw new FileNotFoundException();
+        });
     }
 
     @Test
-    public void TimeoutExceptionHandlerTest(){
-        invoker.invoke(this, new TimeoutException(), "TimeoutExceptionHandlerTest");
+    public void TimeOutExceptionHandlerTest() throws Exception {
+        invoker.invoke(() -> {
+            throw new TimeoutException();
+        });
+    }
+
+    @Test
+    public void doNotThrowAnyExceptionTest() throws Exception {
+        invoker.invoke(() -> System.out.println("Hello"));
     }
 }
