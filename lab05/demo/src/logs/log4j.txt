@@ -1,1 +1,6 @@
 
+2021-11-20 00:04:10 ERROR - Input/output exception
+2021-11-20 00:04:13 ERROR - SQL exception
+2021-11-20 00:04:13 ERROR - File not found exception
+2021-11-20 00:04:13 ERROR - Input/output exception
+2021-11-20 00:04:16 ERROR - Timeout
