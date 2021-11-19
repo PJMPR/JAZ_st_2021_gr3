@@ -15,7 +15,7 @@ public enum SafeInvoker {
     INSTANCE;
 
     static private final Map<Class<? extends Exception>, Action> actionRegistry = new HashMap<>();
-    static private final Logger logger = Logger.getLogger(SafeInvoker.class.getName());
+    static public final Logger logger = Logger.getLogger(SafeInvoker.class.getName());
 
     static {
         try {
@@ -39,7 +39,7 @@ public enum SafeInvoker {
         } catch (Exception exception) {
             final var action = actionRegistry.getOrDefault(exception.getClass(), Action.NONE);
             logger.log(Level.INFO, "An %s occurred, invoking action.".formatted(exception.getClass().getName()), exception);
-            action.invoke(unsafeMethod, actionLock, logger);
+            action.invoke(unsafeMethod, exception, actionLock, logger);
         }
 
         while (actionLock.get()) {

@@ -22,5 +22,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.11.19" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:3.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-junit-jupiter:4.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.14.3" level="project" />
   </component>
 </module>

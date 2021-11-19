@@ -6,10 +6,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -50,5 +52,28 @@ public class SafeInvokerTest {
         SafeInvoker.INSTANCE.invoke(spy);
 
         verify(spy, times(10)).invoke();
+    }
+
+    @Test
+    public void askGoogleActionShouldLogResults() {
+        StringJoiner logs = new StringJoiner("");
+
+        SafeInvoker.logger.addHandler(new Handler() {
+            @Override
+            public void publish(LogRecord record) {
+                logs.add(record.getMessage());
+            }
+
+            @Override
+            public void flush() { }
+
+            @Override
+            public void close() throws SecurityException { }
+        });
+
+        SafeInvoker.INSTANCE.setActionForException(Exception.class, Action.askGoogleWhatToDo);
+        SafeInvoker.INSTANCE.invoke(unsafeMethods.get(Exception.class));
+
+        assertTrue(logs.toString().contains("I don't know what to do now, but here are some google search results about"), "Ask Google action should return results");
     }
 }
