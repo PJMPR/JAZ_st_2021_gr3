@@ -1,6 +1,8 @@
 package com.github.electroluxv2.lab06.controllers;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.github.electroluxv2.lab06.entities.Installment;
+import com.github.electroluxv2.lab06.entities.Views;
 import com.github.electroluxv2.lab06.services.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,7 @@ public class BankController {
         return new ResponseEntity<>(createdId, HttpStatus.CREATED);
     }
 
+    @JsonView(Views.Public.class)
     @GetMapping("/get/{id}")
     public ResponseEntity<List<Installment>> get(@PathVariable final long id) {
         return new ResponseEntity<>(bankService.getByCreditId(id), HttpStatus.OK);

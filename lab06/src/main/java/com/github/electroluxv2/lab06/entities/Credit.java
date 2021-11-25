@@ -1,5 +1,7 @@
 package com.github.electroluxv2.lab06.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,11 +9,17 @@ import javax.persistence.*;
 public class Credit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.Public.class)
     private long id;
+    @JsonView(Views.Public.class)
     private double amount;
+    @JsonView(Views.Public.class)
     private long installmentCount;
+    @JsonView(Views.Public.class)
     private InstallmentType installmentType;
+    @JsonView(Views.Public.class)
     private double percentage;
+    @JsonView(Views.Public.class)
     private double fixedRate;
 
     public Credit() { }

@@ -1,5 +1,7 @@
 package com.github.electroluxv2.lab06.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -11,14 +13,18 @@ import javax.persistence.Table;
 public class Installment {
     @Id
     private long creditId;
-
     @Id
+    @JsonView(Views.Public.class)
     private long number;
-
+    @JsonView(Views.Public.class)
     private double capital;
+    @JsonView(Views.Public.class)
     private double interest;
+    @JsonView(Views.Public.class)
     private double fixedFee;
+    @JsonView(Views.Public.class)
     private double capitalToPay;
+    @JsonView(Views.Public.class)
     private double amount;
 
     public Installment() { }
