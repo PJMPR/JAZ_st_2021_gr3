@@ -16,9 +16,8 @@ public class SafeInvokerTEST {
 
 
     @Test
-    public void shouldnotThrowAccesDeniedEXC(){
+    public void shouldnotThrowAccesDeniedEXC() throws FileNotFoundException {
 
-        new SafeInvoker(()-> {throw new AccesDeniedException()});
-
+        new SafeInvoker().invoke(throw new FileNotFoundException());
     }
 }
