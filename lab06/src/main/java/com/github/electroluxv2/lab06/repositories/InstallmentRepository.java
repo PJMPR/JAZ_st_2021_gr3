@@ -1,7 +1,7 @@
-package com.github.electroluxv2.lab06.service;
+package com.github.electroluxv2.lab06.repositories;
 
-import com.github.electroluxv2.lab06.entity.Installment;
-import com.github.electroluxv2.lab06.entity.InstallmentId;
+import com.github.electroluxv2.lab06.entities.Installment;
+import com.github.electroluxv2.lab06.entities.InstallmentId;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

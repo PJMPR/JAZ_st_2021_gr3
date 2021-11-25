@@ -1,4 +1,4 @@
-package com.github.electroluxv2.lab06.entity;
+package com.github.electroluxv2.lab06.entities;
 
 import java.io.Serializable;
 

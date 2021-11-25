@@ -1,20 +1,23 @@
-package com.github.electroluxv2.lab06.service;
+package com.github.electroluxv2.lab06.services;
 
-import com.github.electroluxv2.lab06.entity.Credit;
-import com.github.electroluxv2.lab06.entity.Installment;
-import com.github.electroluxv2.lab06.entity.InstallmentType;
+import com.github.electroluxv2.lab06.entities.Credit;
+import com.github.electroluxv2.lab06.entities.Installment;
+import com.github.electroluxv2.lab06.entities.InstallmentType;
+import com.github.electroluxv2.lab06.repositories.CreditRepository;
+import com.github.electroluxv2.lab06.repositories.InstallmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
-public class CreditService {
+public class BankService {
     final CreditRepository creditRepository;
     final InstallmentRepository installmentRepository;
 
     @Autowired
-    public CreditService(final CreditRepository creditRepository, final InstallmentRepository installmentRepository) {
+    public BankService(final CreditRepository creditRepository, final InstallmentRepository installmentRepository) {
         this.creditRepository = creditRepository;
         this.installmentRepository = installmentRepository;
     }
@@ -31,5 +34,9 @@ public class CreditService {
         installmentRepository.saveAll(installments);
 
         return creditId;
+    }
+
+    public List<Installment> getByCreditId(final long creditId) {
+        return installmentRepository.findAllByCreditId(creditId);
     }
 }
