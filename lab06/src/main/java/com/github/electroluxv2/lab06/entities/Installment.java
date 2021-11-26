@@ -23,9 +23,9 @@ public class Installment {
     @JsonView(Views.Public.class)
     private double fixedFee;
     @JsonView(Views.Public.class)
-    private double capitalToPay;
-    @JsonView(Views.Public.class)
     private double amount;
+    @JsonView(Views.Public.class)
+    private double capitalToPay;
 
     public Installment() { }
 
