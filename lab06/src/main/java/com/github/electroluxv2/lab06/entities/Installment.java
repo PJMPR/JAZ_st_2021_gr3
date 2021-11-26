@@ -58,4 +58,8 @@ public class Installment {
     public double getAmount() {
         return amount;
     }
+
+    public long getNumber() {
+        return number;
+    }
 }
