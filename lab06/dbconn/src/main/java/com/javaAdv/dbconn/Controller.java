@@ -3,6 +3,7 @@ package com.javaAdv.dbconn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -35,11 +36,8 @@ public class Controller {
         return count;
     }
     @GetMapping("/timetable/{id}")
-    public Optional<Harmonogram> returnHarmonograph(@PathVariable Integer id){
-        for (int i = 0; i < id; i++) {
-            return harmonoInterface.findById(i);
-        }
-        return null;
+    public List<Harmonogram> getTable(){
+    return harmonoInterface.findAll();
     }
 
 
