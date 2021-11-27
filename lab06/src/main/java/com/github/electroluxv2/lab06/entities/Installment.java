@@ -62,4 +62,16 @@ public class Installment {
     public long getNumber() {
         return number;
     }
+
+    @Override
+    public String toString() {
+        return ("""
+                #%d
+                %.2f
+                %.2f
+                %.2f
+                %.2f
+                %.2f
+                """).formatted(number, capital, interest, fixedFee, capitalToPay, amount);
+    }
 }

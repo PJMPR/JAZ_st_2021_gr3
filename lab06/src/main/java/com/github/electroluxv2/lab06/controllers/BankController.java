@@ -2,15 +2,18 @@ package com.github.electroluxv2.lab06.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.github.electroluxv2.lab06.entities.Credit;
-import com.github.electroluxv2.lab06.entities.Installment;
 import com.github.electroluxv2.lab06.entities.Views;
+import com.github.electroluxv2.lab06.exporters.Exporter;
 import com.github.electroluxv2.lab06.services.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @RestController
 public class BankController {
@@ -29,7 +32,13 @@ public class BankController {
 
     @JsonView(Views.Public.class)
     @GetMapping("/credit/timetable/{id}")
-    public ResponseEntity<List<Installment>> get(@PathVariable final long id) {
-        return new ResponseEntity<>(bankService.getInstallmentsByCreditId(id), HttpStatus.OK);
+    public ResponseEntity<byte[]> get(final HttpServletResponse response, @PathVariable final long id, @RequestParam("file") final Optional<String> file) throws Exception {
+        final var installments = bankService.getInstallmentsByCreditId(id);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("aaaa.pdf", "aaaa.pdf");
+
+        return new ResponseEntity<>(Exporter.PDF.export(installments), headers, HttpStatus.OK);
     }
 }
