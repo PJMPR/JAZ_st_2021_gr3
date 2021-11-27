@@ -1,5 +1,6 @@
 package com.github.electroluxv2.lab06.entities;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @IdClass(InstallmentId.class)
 @Table(name = "installments")
+@JsonPropertyOrder({"number", "capital", "interest", "fixedFee", "amount", "capitalToPay"})
 public class Installment {
     @Id
     private long creditId;
@@ -72,6 +74,6 @@ public class Installment {
                 %.2f
                 %.2f
                 %.2f
-                """).formatted(number, capital, interest, fixedFee, capitalToPay, amount);
+                """).formatted(number, capital, interest, fixedFee, amount, capitalToPay);
     }
 }
