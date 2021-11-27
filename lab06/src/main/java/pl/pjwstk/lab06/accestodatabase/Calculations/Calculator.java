@@ -19,7 +19,7 @@ public class Calculator {
     public List<Installment> calculate(Credit credit){
         List<Installment> installments = new ArrayList<>();
         switch (credit.getInstallmentType()){
-            case constant -> {
+            case constant, decreasing -> {
                 double ammount = credit.getAmount();
                 double capitaltopay = credit.getAmount();
                 double fixedFee = ammount / credit.getPercentage();
@@ -30,10 +30,6 @@ public class Calculator {
                     double ammountTopay = fixedFee + interest;
                     installments.add(new Installment(capital, interest, fixedFee, capitaltopay, ammount,credit.getId()));
                 }
-            }
-            case decreasing -> {
-                System.out.println("chuj");
-                return  null;
             }
         }
         return installments;
