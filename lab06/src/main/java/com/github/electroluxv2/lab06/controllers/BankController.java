@@ -2,7 +2,7 @@ package com.github.electroluxv2.lab06.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.github.electroluxv2.lab06.entities.Credit;
-import com.github.electroluxv2.lab06.entities.Views;
+import com.github.electroluxv2.lab06.things.that.should.not.exist.but.java.needs.them.tldr.trash.Views;
 import com.github.electroluxv2.lab06.exporters.Exporter;
 import com.github.electroluxv2.lab06.services.BankService;
 import org.springframework.beans.factory.annotation.Autowired;

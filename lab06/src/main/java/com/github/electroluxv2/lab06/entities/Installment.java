@@ -2,6 +2,8 @@ package com.github.electroluxv2.lab06.entities;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.github.electroluxv2.lab06.things.that.should.not.exist.but.java.needs.them.tldr.trash.InstallmentId;
+import com.github.electroluxv2.lab06.things.that.should.not.exist.but.java.needs.them.tldr.trash.Views;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

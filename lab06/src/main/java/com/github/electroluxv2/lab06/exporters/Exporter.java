@@ -2,7 +2,7 @@ package com.github.electroluxv2.lab06.exporters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.electroluxv2.lab06.entities.Installment;
-import com.github.electroluxv2.lab06.entities.Views;
+import com.github.electroluxv2.lab06.things.that.should.not.exist.but.java.needs.them.tldr.trash.Views;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
