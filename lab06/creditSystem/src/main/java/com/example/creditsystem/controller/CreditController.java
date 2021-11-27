@@ -1,8 +1,10 @@
 package com.example.creditsystem.controller;
 
-import com.example.creditsystem.dto.AmountWithCurrency;
+import com.example.creditsystem.dto.CreditParams;
 import com.example.creditsystem.dto.FileType;
 import com.example.creditsystem.dto.Timetable;
+import com.example.creditsystem.service.CreditService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -11,16 +13,25 @@ import java.math.BigDecimal;
 @RequestMapping("/credit")
 public class CreditController {
 
+    private final CreditService creditService;
+
+    @Autowired
+    public CreditController(CreditService creditService) {
+        this.creditService = creditService;
+    }
+
+    @PostMapping("/calculations" )
+    public Integer calculations(@RequestBody CreditParams creditParams){
+        return creditService.createCalculation(creditParams);
+    }
+
     @GetMapping("/timetable/{id}")
     public Timetable getTimetable(@PathVariable String id, @RequestParam(required = false) FileType file) {
+        Timetable timetable = creditService.getTimetable(id);
 
-        Timetable timetable = new Timetable();
-        timetable.setNumber(5);
-        timetable.setCapital(new AmountWithCurrency(new BigDecimal(444), "PLN"));
-        timetable.setInterest(new AmountWithCurrency(new BigDecimal(666), "PLN"));
-        timetable.setFixedFee(new AmountWithCurrency(new BigDecimal(7777), "PLN"));
-        timetable.setCapitalToPay(new AmountWithCurrency(new BigDecimal(42343), "PLN"));
-        timetable.setAmount(new AmountWithCurrency(new BigDecimal(15464564), "PLN"));
+        //TODO dodać obsługę csv i pdf
+
+        //Timetable timetable = new Timetable();
 
         return timetable;
     }

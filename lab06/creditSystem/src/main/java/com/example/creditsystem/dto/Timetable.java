@@ -1,15 +1,16 @@
 package com.example.creditsystem.dto;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Timetable {
 
     private Integer number;
-    private AmountWithCurrency capital;
-    private AmountWithCurrency interest;
-    private AmountWithCurrency fixedFee;
-    private AmountWithCurrency capitalToPay;
-    private AmountWithCurrency amount;
+    private BigDecimal capital;
+    private BigDecimal interest;
+    private BigDecimal fixedFee;
+    private BigDecimal capitalToPay;
+    private BigDecimal amount;
 
     public Integer getNumber() {
         return number;
@@ -19,43 +20,43 @@ public class Timetable {
         this.number = number;
     }
 
-    public AmountWithCurrency getCapital() {
+    public BigDecimal getCapital() {
         return capital;
     }
 
-    public void setCapital(AmountWithCurrency capital) {
+    public void setCapital(BigDecimal capital) {
         this.capital = capital;
     }
 
-    public AmountWithCurrency getInterest() {
+    public BigDecimal getInterest() {
         return interest;
     }
 
-    public void setInterest(AmountWithCurrency interest) {
+    public void setInterest(BigDecimal interest) {
         this.interest = interest;
     }
 
-    public AmountWithCurrency getFixedFee() {
+    public BigDecimal getFixedFee() {
         return fixedFee;
     }
 
-    public void setFixedFee(AmountWithCurrency fixedFee) {
+    public void setFixedFee(BigDecimal fixedFee) {
         this.fixedFee = fixedFee;
     }
 
-    public AmountWithCurrency getCapitalToPay() {
+    public BigDecimal getCapitalToPay() {
         return capitalToPay;
     }
 
-    public void setCapitalToPay(AmountWithCurrency capitalToPay) {
+    public void setCapitalToPay(BigDecimal capitalToPay) {
         this.capitalToPay = capitalToPay;
     }
 
-    public AmountWithCurrency getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(AmountWithCurrency amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
