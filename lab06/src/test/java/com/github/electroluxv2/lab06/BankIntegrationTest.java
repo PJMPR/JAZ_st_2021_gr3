@@ -16,9 +16,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.Arrays;
 import java.util.stream.LongStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -80,5 +82,32 @@ public class BankIntegrationTest {
                 .size();
 
         assertEquals(credit.getInstallmentCount(), correctInstallmentsCount, "Credit calculations should create correct amount of installments");
+    }
+
+    @Test
+    public void requestsShouldHaveCorrectContentType() throws Exception {
+        final var credit = new Credit(10000, 12, InstallmentType.DECREASING, 0.10, 5);
+        final var result = mvc.perform(post("/credit/calculations")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(credit)))
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        final var returnedId = result.getResponse().getContentAsString();
+
+        mvc.perform(get("/credit/timetable/%s".formatted(returnedId))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
+        mvc.perform(get("/credit/timetable/%s?file=csv".formatted(returnedId))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.TEXT_PLAIN));
+
+        mvc.perform(get("/credit/timetable/%s?file=pdf".formatted(returnedId))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_PDF));
     }
 }
