@@ -1,16 +1,12 @@
 package Lab06.Controler;
 
 import Lab06.Credit.Credit;
-import Lab06.Exception.CreditNotFoundException;
 import Lab06.Repository.CreditRepository;
 import Lab06.Service.Service;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @RestController
@@ -37,7 +33,7 @@ public class Controler {
 
 
     @GetMapping("credit/timetable/{id}")
-    public  ResponseEntity<String> getJsonTimeTable(@PathVariable Integer id) throws CreditNotFoundException, JsonProcessingException {
+    public  ResponseEntity<String> getJsonTimeTable(@PathVariable Integer id) throws IOException, IllegalAccessException {
 
         String jSONTimeTable = service.getTimeTableJson(id);
 
@@ -45,15 +41,17 @@ public class Controler {
     }
 
     @GetMapping("credit/timetable/{id}&file=csv")
-    public ResponseEntity<String> getCVS(@PathVariable Integer id) throws CreditNotFoundException, JsonProcessingException, FileNotFoundException {
+    public ResponseEntity<String> getCVS(@PathVariable Integer id) throws IOException, IllegalAccessException {
         service.getTimeTableCVS(id);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("credit/timetable/1234&file=pdf")
-    public void getPdf(){
-        // do smth
+    @GetMapping("credit/timetable/{id}&file=pdf")
+    public ResponseEntity<String> getPdf(@PathVariable Integer id) throws IOException, IllegalAccessException {
+        service.getTImeTablePDF(id);
 
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

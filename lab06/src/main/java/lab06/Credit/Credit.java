@@ -14,18 +14,17 @@ public class Credit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private float amount;                   // wnioskowana kwota kredytu
-    private Integer installmentCount;           // ilość rat
-    private InstalmentType instalmentType;  // rodzaj rat
-    private float percentage;               // oprocentowanie kredytu
-    private float fixedRate;                // opłaty stałe
-
-    private int instalmentNumber;           // numer raty
-    private float capital;                  // czesc kapitalu splaconego
-    private float interest;                 // czesc odsetkowa
-    private float fixedFee;                 // oplata stala
-    private float capitalToPay;             //kapital pozostaly do splaty
-    private float finalinstamlentAmount;    // calkowita kwota raty
+    protected float amount;                   // wnioskowana kwota kredytu
+    protected Integer installmentCount;           // ilość rat
+    protected InstalmentType instalmentType;  // rodzaj rat
+    protected float percentage;               // oprocentowanie kredytu
+    protected float fixedRate;                // opłaty stałeprotected
+    protected int instalmentNumber;           // numer raty
+    protected float capital;                  // czesc kapitalu splaconego
+    protected float interest;                 // czesc odsetkowa
+    protected float fixedFee;                 // oplata stala
+    protected float capitalToPay;             //kapital pozostaly do splaty
+    protected float finalinstamlentAmount;    // calkowita kwota raty
 
     public Credit() {
     }

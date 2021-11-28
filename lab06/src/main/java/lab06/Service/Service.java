@@ -1,8 +1,7 @@
 package Lab06.Service;
 
 import Lab06.Credit.Credit;
-import Lab06.Exception.CreditNotFoundException;
-import Lab06.FilesBuilders.CSVBuilder;
+import Lab06.FilesBuilders.CSVExporter;
 import Lab06.Repository.CreditRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,14 +30,19 @@ public class Service {
 
     }
 
-    public String getTimeTableJson(Integer id) throws CreditNotFoundException, JsonProcessingException {
-        Credit creditFromDB =  repository.findById(id).orElseThrow(CreditNotFoundException::new);
+    public String getTimeTableJson(int id) throws JsonProcessingException {
+        Credit creditFromDB =  repository.findById(id).orElse(null);
         return new ObjectMapper().writeValueAsString(creditFromDB);
     }
 
 
-    public void getTimeTableCVS(Integer id) throws CreditNotFoundException, JsonProcessingException, FileNotFoundException {
-        String json = getTimeTableJson(id);
-        new CSVBuilder(json).buildFile();
+    public void getTimeTableCVS(int id) throws  IOException, IllegalAccessException {
+        Credit creditFromDB = repository.findById(id).orElse(null);
+        new CSVExporter().createCSV(creditFromDB);
+    }
+
+    public void getTImeTablePDF(int id ) throws IOException, IllegalAccessException {
+        Credit creditFromDb = repository.findById(id).orElse(null);
+        new jaz.lab06.demo.exporters.PDFExporter().createPDF(creditFromDb);
     }
 }
