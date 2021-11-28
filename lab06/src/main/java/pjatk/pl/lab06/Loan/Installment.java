@@ -1,9 +1,8 @@
 package pjatk.pl.lab06.Loan;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Installment {
@@ -20,6 +19,8 @@ public class Installment {
     private double fixedFee;
     private double capitalToPay;
     private double installmentAmount;
+
+
 
     public Installment(){}
 

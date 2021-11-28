@@ -1,9 +1,8 @@
 package pjatk.pl.lab06.Loan;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class TimeTable {
@@ -16,6 +15,10 @@ public class TimeTable {
         private double percentage;
         private double fixedRate;
         private InstallmentType installmentType;
+
+        @OneToMany
+        @JoinColumn(name = "timetable_id")
+        private List<Installment> installments = new ArrayList<>();
 
         public TimeTable(){}
 
@@ -74,5 +77,13 @@ public class TimeTable {
 
     public void setInstallmentType(InstallmentType installmentType) {
         this.installmentType = installmentType;
+    }
+
+    public List<Installment> getInstallments() {
+        return installments;
+    }
+
+    public void setInstallments(List<Installment> installments) {
+        this.installments = installments;
     }
 }
