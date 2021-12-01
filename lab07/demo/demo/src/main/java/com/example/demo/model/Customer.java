@@ -1,4 +1,4 @@
-package com.example.demo.data;
+package com.example.demo.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -13,10 +13,8 @@ public class Customer {
     private byte active;
     private Timestamp createDate;
     private Timestamp lastUpdate;
-    private Store store;
-    private Address address;
-    private Collection<Payment> payments;
-    private Collection<Rental> rentalsByCustomer;
+    private Collection<Payment> paymentsByCustomerId;
+    private Collection<Rental> rentalsByCustomerId;
 
     @Id
     @Column(name = "customer_id")
@@ -118,41 +116,21 @@ public class Customer {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false)
-    public Store getStore() {
-        return store;
+    @OneToMany(mappedBy = "customerByCustomerId")
+    public Collection<Payment> getPaymentsByCustomerId() {
+        return paymentsByCustomerId;
     }
 
-    public void setStore(Store store) {
-        this.store = store;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "address_id", referencedColumnName = "address_id", nullable = false)
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    @OneToMany(mappedBy = "customerByCustomerId"  )
-    public Collection<Payment> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(Collection<Payment> payments) {
-        this.payments = payments;
+    public void setPaymentsByCustomerId(Collection<Payment> paymentsByCustomerId) {
+        this.paymentsByCustomerId = paymentsByCustomerId;
     }
 
     @OneToMany(mappedBy = "customerByCustomerId")
-    public Collection<Rental> getRentalsByCustomer() {
-        return rentalsByCustomer;
+    public Collection<Rental> getRentalsByCustomerId() {
+        return rentalsByCustomerId;
     }
 
-    public void setRentalsByCustomer(Collection<Rental> rentalsByCustomer) {
-        this.rentalsByCustomer = rentalsByCustomer;
+    public void setRentalsByCustomerId(Collection<Rental> rentalsByCustomerId) {
+        this.rentalsByCustomerId = rentalsByCustomerId;
     }
 }

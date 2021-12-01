@@ -26,10 +26,9 @@ public class CustomerController {
     public ResponseEntity get(@PathVariable("id") int id){
         Timestamp t = Timestamp.valueOf("2021-01-10 00:00:00");
         return ResponseEntity.ok(repository.getById(id)
-                .getPayments()
+                .getRentalsByCustomerId()
                 .stream()
-                .map(x->x.getAmount())
-                .collect(Collectors
-                        .toList()));
+                .map(x->x.getLastUpdate())
+                .collect(Collectors.toList()));
     }
 }
