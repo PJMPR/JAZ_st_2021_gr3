@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.model.Customer;
 import com.example.demo.model.Rental;
 import com.example.demo.repositories.CustomerRepository;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("customers")

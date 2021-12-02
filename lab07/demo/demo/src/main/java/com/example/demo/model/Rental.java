@@ -3,6 +3,7 @@ package com.example.demo.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Rental {
@@ -61,11 +62,9 @@ public class Rental {
         Rental rental = (Rental) o;
 
         if (rentalId != rental.rentalId) return false;
-        if (rentalDate != null ? !rentalDate.equals(rental.rentalDate) : rental.rentalDate != null) return false;
-        if (returnDate != null ? !returnDate.equals(rental.returnDate) : rental.returnDate != null) return false;
-        if (lastUpdate != null ? !lastUpdate.equals(rental.lastUpdate) : rental.lastUpdate != null) return false;
-
-        return true;
+        if (!Objects.equals(rentalDate, rental.rentalDate)) return false;
+        if (!Objects.equals(returnDate, rental.returnDate)) return false;
+        return Objects.equals(lastUpdate, rental.lastUpdate);
     }
 
     @Override

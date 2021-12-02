@@ -3,6 +3,7 @@ package com.example.demo.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Customer {
@@ -95,13 +96,11 @@ public class Customer {
 
         if (customerId != customer.customerId) return false;
         if (active != customer.active) return false;
-        if (firstName != null ? !firstName.equals(customer.firstName) : customer.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(customer.lastName) : customer.lastName != null) return false;
-        if (email != null ? !email.equals(customer.email) : customer.email != null) return false;
-        if (createDate != null ? !createDate.equals(customer.createDate) : customer.createDate != null) return false;
-        if (lastUpdate != null ? !lastUpdate.equals(customer.lastUpdate) : customer.lastUpdate != null) return false;
-
-        return true;
+        if (!Objects.equals(firstName, customer.firstName)) return false;
+        if (!Objects.equals(lastName, customer.lastName)) return false;
+        if (!Objects.equals(email, customer.email)) return false;
+        if (!Objects.equals(createDate, customer.createDate)) return false;
+        return Objects.equals(lastUpdate, customer.lastUpdate);
     }
 
     @Override
