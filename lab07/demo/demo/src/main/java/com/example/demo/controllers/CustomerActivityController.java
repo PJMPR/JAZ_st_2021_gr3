@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.repositories.CustomerRecords;
 import com.example.demo.repositories.CustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,7 @@ public class CustomerActivityController {
     }
 
     @GetMapping("rentMoviesByMonth")
-    public ResponseEntity<List<CustomerRankingBySpentMoneyEntry>> bySpentMoney(@RequestParam("chart") final Optional<String> chart) {
-        final var list = repository.get10CustomersByMostSpentMoney()
-                .stream()
-                .map(CustomerRankingBySpentMoneyEntry::from)
-                .toList();
-
-        return new ResponseEntity<>(list, HttpStatus.OK);
+    public ResponseEntity<List<CustomerRecords.CustomerRankingBySpentMoneyEntry>> bySpentMoney(@RequestParam("chart") final Optional<String> chart) {
+        return new ResponseEntity<>(repository.get10CustomersByMostSpentMoney(), HttpStatus.OK);
     }
 }

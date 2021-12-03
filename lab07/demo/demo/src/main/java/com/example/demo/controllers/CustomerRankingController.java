@@ -1,12 +1,14 @@
 package com.example.demo.controllers;
 
-import com.example.demo.model.Rental;
+import com.example.demo.repositories.CustomerRecords;
 import com.example.demo.repositories.CustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,22 +22,12 @@ public class CustomerRankingController {
     }
 
     @GetMapping("bySpentMoney")
-    public ResponseEntity<List<CustomerRankingBySpentMoneyEntry>> bySpentMoney(@RequestParam("chart") final Optional<String> chart) {
-        final var list = repository.get10CustomersByMostSpentMoney()
-                .stream()
-                .map(CustomerRankingBySpentMoneyEntry::from)
-                .toList();
-
-        return new ResponseEntity<>(list, HttpStatus.OK);
+    public ResponseEntity<List<CustomerRecords.CustomerRankingBySpentMoneyEntry>> bySpentMoney(@RequestParam("chart") final Optional<String> chart) {
+        return new ResponseEntity<>(repository.get10CustomersByMostSpentMoney(), HttpStatus.OK);
     }
 
     @GetMapping("byWatchedMovies")
-    public ResponseEntity<List<CustomerRankingByWatchedMoviesEntry>> byWatchedMovies(@RequestParam("chart") final Optional<String> chart) {
-        final var list = repository.get10CustomersByMostMoviesWatched()
-                .stream()
-                .map(CustomerRankingByWatchedMoviesEntry::from)
-                .toList();
-
-        return new ResponseEntity<>(list, HttpStatus.OK);
+    public ResponseEntity<List<CustomerRecords.CustomerRankingByWatchedMoviesEntry>> byWatchedMovies(@RequestParam("chart") final Optional<String> chart) {
+        return new ResponseEntity<>(repository.get10CustomersByMostMoviesWatched(), HttpStatus.OK);
     }
 }
