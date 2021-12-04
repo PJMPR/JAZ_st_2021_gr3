@@ -21,15 +21,17 @@ public class RentalController {
         this.repository = repository;
     }
 
-    @GetMapping("incomebyMonth")
-    public ResponseEntity<List<CustomerRecords.MonthIncomeEntry>> incomebyMonth(@RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year) {
+    @GetMapping("incomeByMonth")
+    public ResponseEntity<List<CustomerRecords.MonthIncomeEntry>> incomeByMonth(@RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year) {
         final var list = year.isPresent() ? repository.getMonthIncomeForYear(year.get()) : repository.getMonthIncome();
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping("income")
-    public ResponseEntity<List<CustomerRecords.CustomerRankingByWatchedMoviesEntry>> income(@RequestParam("chart") final Optional<String> chart) {
-        return new ResponseEntity<>(repository.get10CustomersByMostMoviesWatched(), HttpStatus.OK);
+    public ResponseEntity<List<CustomerRecords.MonthIncomeEntry>> income(@RequestParam("from") final String from, @RequestParam("to") final String to, @RequestParam("chart") final Optional<String> chart) {
+        final var list = repository.getIncomeForRange(from, to);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }
