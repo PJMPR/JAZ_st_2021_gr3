@@ -3,12 +3,11 @@ package com.example.demo.controllers;
 import com.example.demo.repositories.CustomerRecords;
 import com.example.demo.repositories.CustomerRepository;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.xy.XYBarDataset;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,16 +36,14 @@ public class CustomerRankingController {
 
         if (chart.isPresent()) {
             if (chart.get().equals("pie")) {
+
                 DefaultPieDataset<String> pieDataset = new DefaultPieDataset<>();
 
                 for (var item : list) {
                     pieDataset.setValue(item.getCustomer().firstName() + " " + item.getCustomer().lastName(), item.getSpent().doubleValue());
                 }
 
-                JFreeChart pieChart3D = ChartFactory.createPieChart("bySpentMoney", pieDataset, true, true, true);
-
-                ChartUtils.writeChartAsPNG(response.getOutputStream(), pieChart3D, 800, 600);
-                response.flushBuffer();
+                ChartMaker.PIE.export(response, pieDataset, "By spent money");
             } else if (chart.get().equals("bar")) {
                 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
