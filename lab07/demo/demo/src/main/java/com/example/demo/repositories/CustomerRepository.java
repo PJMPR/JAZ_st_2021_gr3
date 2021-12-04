@@ -27,4 +27,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query(nativeQuery = true, value = "select month(rental_date) as month, count(rental_id) as rentMovies from rental where year(rental_date) = :#{#year} and customer_id = :#{#customer_id} group by month")
     List<CustomerRecords.MonthRentActivityEntry> getRentMoviesByMonthForYearAndUser(@Param("customer_id") final int customerId, @Param("year") final int year);
+
+    @Query(nativeQuery = true, value = "select month(payment_date) as month, count(amount) as income from payment group by month")
+    List<CustomerRecords.MonthIncomeEntry> getMonthIncome();
+
+    @Query(nativeQuery = true, value = "select month(payment_date) as month, count(amount) as income from payment where year(payment_date) = :#{#year} group by month")
+    List<CustomerRecords.MonthIncomeEntry> getMonthIncomeForYear(@Param("year") final int year);
 }

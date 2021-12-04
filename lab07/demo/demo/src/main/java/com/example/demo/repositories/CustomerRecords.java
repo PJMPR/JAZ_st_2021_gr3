@@ -24,5 +24,10 @@ public class CustomerRecords {
         short getMonth();
         int getRentMovies();
     }
+
+    public interface MonthIncomeEntry {
+        short getMonth();
+        int getIncome();
+    }
 }
 
