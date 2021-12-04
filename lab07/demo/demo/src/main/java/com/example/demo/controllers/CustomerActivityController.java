@@ -22,7 +22,19 @@ public class CustomerActivityController {
     }
 
     @GetMapping("rentMoviesByMonth")
-    public ResponseEntity<List<CustomerRecords.CustomerRankingBySpentMoneyEntry>> bySpentMoney(@RequestParam("chart") final Optional<String> chart) {
-        return new ResponseEntity<>(repository.get10CustomersByMostSpentMoney(), HttpStatus.OK);
+    public ResponseEntity<List<CustomerRecords.MonthRentActivityEntry>> bySpentMoney(@RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year, @RequestParam("userId") final Optional<Integer> userId) {
+
+        List<CustomerRecords.MonthRentActivityEntry> list;
+        if (year.isPresent() && userId.isPresent()) {
+            list = repository.getRentMoviesByMonthForYearAndUser(userId.get(), year.get());
+        } else if (year.isPresent()) {
+            list = repository.getRentMoviesByMonthForYear(year.get());
+        } else if (userId.isPresent()) {
+            list = repository.getRentMoviesByMonthForUser(userId.get());
+        } else {
+            list = repository.getRentMoviesByMonth();
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

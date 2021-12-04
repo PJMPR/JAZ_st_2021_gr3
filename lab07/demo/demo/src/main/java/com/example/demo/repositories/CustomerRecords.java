@@ -19,5 +19,10 @@ public class CustomerRecords {
         CustomerEntry getCustomer();
         short getWatched();
     }
+
+    public interface MonthRentActivityEntry {
+        short getMonth();
+        int getRentMovies();
+    }
 }
 
