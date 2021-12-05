@@ -1,7 +1,8 @@
 package com.example.demo.controllers;
 
-import com.example.demo.repositories.CustomerRecords;
 import com.example.demo.repositories.CustomerRepository;
+import com.example.demo.repositories.interfaces.CustomerRankingBySpentMoneyEntry;
+import com.example.demo.repositories.interfaces.CustomerRankingByWatchedMoviesEntry;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,26 +25,26 @@ public class CustomerRankingController {
     }
 
     @GetMapping("bySpentMoney")
-    public ResponseEntity<List<CustomerRecords.CustomerRankingBySpentMoneyEntry>> bySpentMoney(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart) throws IOException {
+    public ResponseEntity<List<CustomerRankingBySpentMoneyEntry>> bySpentMoney(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart) throws IOException {
         final var list = repository.get10CustomersByMostSpentMoney();
 
         if (chart.isEmpty()) {
             return new ResponseEntity<>(list, HttpStatus.OK);
         }
 
-        ChartMaker.export(chart.get(), response, CustomerRecords.CustomerRankingBySpentMoneyEntry.toDatasetEntryList(list), "By spent money.");
+        ChartMaker.export(chart.get(), response, CustomerRankingBySpentMoneyEntry.toDatasetEntryList(list), "By spent money.");
         return null;
     }
 
     @GetMapping("byWatchedMovies")
-    public ResponseEntity<List<CustomerRecords.CustomerRankingByWatchedMoviesEntry>> byWatchedMovies(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart) throws IOException {
+    public ResponseEntity<List<CustomerRankingByWatchedMoviesEntry>> byWatchedMovies(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart) throws IOException {
         final var list = repository.get10CustomersByMostMoviesWatched();
 
         if (chart.isEmpty()) {
             return new ResponseEntity<>(list, HttpStatus.OK);
         }
 
-        ChartMaker.export(chart.get(), response, CustomerRecords.CustomerRankingByWatchedMoviesEntry.toDatasetEntryList(list), "By watched movies.");
+        ChartMaker.export(chart.get(), response, CustomerRankingByWatchedMoviesEntry.toDatasetEntryList(list), "By watched movies.");
         return null;
     }
 }

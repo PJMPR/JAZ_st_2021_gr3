@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
-import com.example.demo.repositories.CustomerRecords;
 import com.example.demo.repositories.CustomerRepository;
+import com.example.demo.repositories.interfaces.MonthRentActivityEntry;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +24,9 @@ public class CustomerActivityController {
     }
 
     @GetMapping("rentMoviesByMonth")
-    public ResponseEntity<List<CustomerRecords.MonthRentActivityEntry>> bySpentMoney(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year, @RequestParam("userId") final Optional<Integer> userId) throws IOException {
+    public ResponseEntity<List<MonthRentActivityEntry>> bySpentMoney(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year, @RequestParam("userId") final Optional<Integer> userId) throws IOException {
 
-        List<CustomerRecords.MonthRentActivityEntry> list;
+        List<MonthRentActivityEntry> list;
         if (year.isPresent() && userId.isPresent()) {
             list = repository.getRentMoviesByMonthForYearAndUser(userId.get(), year.get());
         } else if (year.isPresent()) {
@@ -41,7 +41,7 @@ public class CustomerActivityController {
             return new ResponseEntity<>(list, HttpStatus.OK);
         }
 
-        ChartMaker.export(chart.get(), response, CustomerRecords.MonthRentActivityEntry.toDatasetEntryList(list), "Rent movies by month.");
+        ChartMaker.export(chart.get(), response, MonthRentActivityEntry.toDatasetEntryList(list), "Rent movies by month.");
         return null;
     }
 }
