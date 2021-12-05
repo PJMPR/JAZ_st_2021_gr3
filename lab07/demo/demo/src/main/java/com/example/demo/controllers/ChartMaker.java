@@ -5,8 +5,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,42 +16,9 @@ interface Exporter {
 }
 
 public enum ChartMaker {
-    PIE((dataset, title) -> {
-        DefaultPieDataset<String> pieDataset = new DefaultPieDataset<>();
-
-        for (var item : dataset) {
-            pieDataset.setValue(item.key(), item.value());
-        }
-
-        return ChartFactory.createPieChart(title, pieDataset, true, true, true);
-    }),
-    BAR((dataset, title) -> {
-        DefaultCategoryDataset barDataset = new DefaultCategoryDataset();
-
-        for (var item : dataset) {
-            barDataset.setValue(item.value(), "Value", item.key());
-        }
-
-        return ChartFactory.createBarChart(
-                title,
-                "",
-                title,
-                barDataset,
-                PlotOrientation.VERTICAL,
-                true,
-                true,
-                false
-        );
-    }),
-    LINEAR(((dataset, title) -> {
-        DefaultCategoryDataset categoryDataset = new DefaultCategoryDataset();
-
-        for (var item : dataset) {
-            categoryDataset.addValue(item.value().doubleValue(), "Value", item.key());
-        }
-
-        return ChartFactory.createLineChart(title, title, title, categoryDataset);
-    }));
+    PIE((dataset, title) -> ChartFactory.createPieChart(title, new DefaultPieDataset<>(CustomerRecords.DatasetEntry.toKeyedValues(dataset)), true, true, true)),
+    BAR((dataset, title) -> ChartFactory.createBarChart(title, title, title, CustomerRecords.DatasetEntry.toCategoryDataset(dataset), PlotOrientation.VERTICAL,true,true,false)),
+    LINEAR(((dataset, title) -> ChartFactory.createLineChart(title, title, title, CustomerRecords.DatasetEntry.toCategoryDataset(dataset))));
 
     final private Exporter exporter;
 
