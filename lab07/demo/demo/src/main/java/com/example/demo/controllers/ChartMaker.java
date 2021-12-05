@@ -14,29 +14,27 @@ import java.io.IOException;
 import java.util.List;
 
 interface Exporter {
-    void export(HttpServletResponse response, List<CustomerRecords.DatasetEntry> dataset, String title) throws IOException;
+    JFreeChart export(List<CustomerRecords.DatasetEntry> dataset, String title) throws IOException;
 }
 
 public enum ChartMaker {
-    PIE((response, dataset, title) -> {
+    PIE((dataset, title) -> {
         DefaultPieDataset<String> pieDataset = new DefaultPieDataset<>();
 
         for (var item : dataset) {
             pieDataset.setValue(item.key(), item.value());
         }
 
-        JFreeChart pieChart = ChartFactory.createPieChart(title, pieDataset, true, true, true);
-        ChartUtils.writeChartAsPNG(response.getOutputStream(), pieChart, 800, 600);
-        response.flushBuffer();
+        return ChartFactory.createPieChart(title, pieDataset, true, true, true);
     }),
-    BAR((response, dataset, title) -> {
+    BAR((dataset, title) -> {
         DefaultCategoryDataset barDataset = new DefaultCategoryDataset();
 
         for (var item : dataset) {
             barDataset.setValue(item.value(), "Value", item.key());
         }
 
-        JFreeChart barChart = ChartFactory.createBarChart(
+        return ChartFactory.createBarChart(
                 title,
                 "",
                 title,
@@ -46,20 +44,15 @@ public enum ChartMaker {
                 true,
                 false
         );
-
-        ChartUtils.writeChartAsPNG(response.getOutputStream(), barChart, 800, 600);
-        response.flushBuffer();
     }),
-    LINEAR(((response, dataset, title) -> {
+    LINEAR(((dataset, title) -> {
         DefaultCategoryDataset categoryDataset = new DefaultCategoryDataset();
 
         for (var item : dataset) {
             categoryDataset.addValue(item.value().doubleValue(), "Value", item.key());
         }
 
-        JFreeChart linearChart = ChartFactory.createLineChart(title, title, title, categoryDataset);
-        ChartUtils.writeChartAsPNG(response.getOutputStream(), linearChart, 800, 600);
-        response.flushBuffer();
+        return ChartFactory.createLineChart(title, title, title, categoryDataset);
     }));
 
     final private Exporter exporter;
@@ -68,7 +61,13 @@ public enum ChartMaker {
         this.exporter = exporter;
     }
 
+    private static void flush(JFreeChart chart, HttpServletResponse response) throws IOException {
+        ChartUtils.writeChartAsPNG(response.getOutputStream(), chart, 800, 600);
+        response.flushBuffer();
+    }
+
     public static void export(String exporter, HttpServletResponse response, List<CustomerRecords.DatasetEntry> dataset, String title) throws IOException {
-        ChartMaker.valueOf(exporter.toUpperCase()).exporter.export(response, dataset, title);
+        JFreeChart chart = ChartMaker.valueOf(exporter.toUpperCase()).exporter.export(dataset, title);
+        ChartMaker.flush(chart, response);
     }
 }
