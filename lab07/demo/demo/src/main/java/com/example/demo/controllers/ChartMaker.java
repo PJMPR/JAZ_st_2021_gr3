@@ -6,14 +6,9 @@ import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.general.DefaultPieDataset;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
-interface Exporter {
-    JFreeChart export(List<DatasetEntry> dataset, String title) throws IOException;
-}
 
 public enum ChartMaker {
     PIE((dataset, title) -> ChartFactory.createPieChart(title, new DefaultPieDataset<>(DatasetEntry.toKeyedValues(dataset)), true, true, true)),
@@ -24,6 +19,10 @@ public enum ChartMaker {
 
     ChartMaker(Exporter exporter) {
         this.exporter = exporter;
+    }
+
+    public Exporter getExporter() {
+        return this.exporter;
     }
 
     public static void export(String exporter, HttpServletResponse response, List<DatasetEntry> dataset, String title) throws IOException {
