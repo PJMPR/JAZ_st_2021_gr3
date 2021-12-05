@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,16 +24,26 @@ public class RentalController {
     }
 
     @GetMapping("incomeByMonth")
-    public ResponseEntity<List<CustomerRecords.MonthIncomeEntry>> incomeByMonth(@RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year) {
+    public ResponseEntity<List<CustomerRecords.MonthIncomeEntry>> incomeByMonth(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year) throws IOException {
         final var list = year.isPresent() ? repository.getMonthIncomeForYear(year.get()) : repository.getMonthIncome();
 
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        if (chart.isEmpty()) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+
+        ChartMaker.export(chart.get(), response, CustomerRecords.MonthIncomeEntry.toDatasetEntryList(list), "Income by month.");
+        return null;
     }
 
     @GetMapping("income")
-    public ResponseEntity<List<CustomerRecords.MonthIncomeEntry>> income(@RequestParam("from") final String from, @RequestParam("to") final String to, @RequestParam("chart") final Optional<String> chart) {
+    public ResponseEntity<List<CustomerRecords.MonthIncomeEntry>> income(HttpServletResponse response, @RequestParam("from") final String from, @RequestParam("to") final String to, @RequestParam("chart") final Optional<String> chart) throws IOException {
         final var list = repository.getIncomeForRange(from, to);
 
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        if (chart.isEmpty()) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+
+        ChartMaker.export(chart.get(), response, CustomerRecords.MonthIncomeEntry.toDatasetEntryList(list), "Income.");
+        return null;
     }
 }

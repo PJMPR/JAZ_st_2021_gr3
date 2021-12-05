@@ -5,6 +5,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -48,7 +49,18 @@ public enum ChartMaker {
 
         ChartUtils.writeChartAsPNG(response.getOutputStream(), barChart, 800, 600);
         response.flushBuffer();
-    });
+    }),
+    LINEAR(((response, dataset, title) -> {
+        DefaultCategoryDataset categoryDataset = new DefaultCategoryDataset();
+
+        for (var item : dataset) {
+            categoryDataset.addValue(item.value().doubleValue(), "Value", item.key());
+        }
+
+        JFreeChart linearChart = ChartFactory.createLineChart(title, title, title, categoryDataset);
+        ChartUtils.writeChartAsPNG(response.getOutputStream(), linearChart, 800, 600);
+        response.flushBuffer();
+    }));
 
     final private Exporter exporter;
 
