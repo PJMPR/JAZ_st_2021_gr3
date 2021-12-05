@@ -32,22 +32,22 @@
         </properties>
     </persistence-unit>
     <persistence-unit name="persistenceUnit">
-        <class>com.example.demo.model.Actor</class>
-        <class>com.example.demo.model.Address</class>
-        <class>com.example.demo.model.Category</class>
-        <class>com.example.demo.model.City</class>
-        <class>com.example.demo.model.Country</class>
-        <class>com.example.demo.model.Customer</class>
-        <class>com.example.demo.model.Film</class>
-        <class>com.example.demo.model.FilmActor</class>
-        <class>com.example.demo.model.FilmCategory</class>
-        <class>com.example.demo.model.FilmText</class>
-        <class>com.example.demo.model.Inventory</class>
-        <class>com.example.demo.model.Language</class>
-        <class>com.example.demo.model.Payment</class>
-        <class>com.example.demo.model.Rental</class>
-        <class>com.example.demo.model.Staff</class>
-        <class>com.example.demo.model.Store</class>
+        <class>com.example.demo.DBModel.Actor</class>
+        <class>com.example.demo.DBModel.Address</class>
+        <class>com.example.demo.DBModel.Category</class>
+        <class>com.example.demo.DBModel.City</class>
+        <class>com.example.demo.DBModel.Country</class>
+        <class>com.example.demo.DBModel.Customer</class>
+        <class>com.example.demo.DBModel.Film</class>
+        <class>com.example.demo.DBModel.FilmActor</class>
+        <class>com.example.demo.DBModel.FilmCategory</class>
+        <class>com.example.demo.DBModel.FilmText</class>
+        <class>com.example.demo.DBModel.Inventory</class>
+        <class>com.example.demo.DBModel.Language</class>
+        <class>com.example.demo.DBModel.Payment</class>
+        <class>com.example.demo.DBModel.Rental</class>
+        <class>com.example.demo.DBModel.Staff</class>
+        <class>com.example.demo.DBModel.Store</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/sakila"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>

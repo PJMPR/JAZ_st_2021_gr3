@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9f064351-8dea-4195-bcf6-d114cf2e6425" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DBModel/Rental.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DTOModel/CustomerDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DTOModel/PaymentDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DTOModel/RentalDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Spent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/results/CustomerStats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab00/lab00.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/src/main/java/org/example/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/src/main/java/org/example/ObjectPropertyProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/src/test/java/org/example/SimpleMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/src/test/java/org/example/tests/ObjectPropertyProviderTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab01/demo/src/test/java/org/example/tests/Subject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/annotations/NotNull.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/annotations/Range.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/annotations/Regex.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/annotations/SomeAnnotation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/validators/ValidationResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/validators/Validator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/validators/rules/ICheckValidationRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/validators/rules/NotNullValidationRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/validators/rules/RangeValidationRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/validators/rules/RegexValidationRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/main/java/org/example/validators/rules/ValidationRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/test/java/org/example/tests/SampleObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab02/demo/src/test/java/org/example/tests/TestValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/model/Gender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/model/People.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/model/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/queries/QueryProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/queries/results/FunctionResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/queries/results/Results.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/queries/search/Funcs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/queries/search/FunctionsParameters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/queries/search/Page.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/main/java/org/example/queries/search/SearchParameters.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab03/demo/src/test/java/org/example/tests/TestQueryProcessor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/src/main/java/org/example/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/src/main/java/org/example/caching/Cache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/src/main/java/org/example/caching/loaders/DictionaryCacheLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/src/main/java/org/example/model/Dictionary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/src/test/java/org/example/tests/TestCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/demo/src/test/java/org/example/tests/TestDictionaryCacheLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab04/dictionaries.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab05/demo/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/BeanRegistryConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/DemoApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/ServletInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/contract/CreditDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/contract/InstallmentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/contract/TimetablePositionDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/controllers/CreditController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/model/Credit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/model/TimetablePosition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/repositories/CreditRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/repositories/TimetablePositionsRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/services/CreditCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/services/CreditDbService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/services/DoNothingCreditCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/services/ICreditDbService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/services/IPdfCreator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/java/com/example/demo/services/PdfCreator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/demo/demo/src/test/java/com/example/demo/DemoApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../lab06/lab06.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controllers/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/controllers/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DBModel/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/DBModel/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Rental.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/model/Rental.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repositories/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/example/demo/repositories/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/persitance.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/persitance.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="21sR72TGdnTvl9tCWWi3bZ8LdXt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/demo/pom.xml" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f064351-8dea-4195-bcf6-d114cf2e6425" name="Changes" comment="" />
+      <created>1638727637597</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638727637597</updated>
+      <workItem from="1638727638742" duration="14000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
