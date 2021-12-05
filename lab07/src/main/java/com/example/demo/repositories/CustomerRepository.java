@@ -1,0 +1,43 @@
+package com.example.demo.repositories;
+
+import com.example.demo.model.Customer;
+import com.example.demo.repositories.interfaces.CustomerRankingBySpentMoneyEntry;
+import com.example.demo.repositories.interfaces.CustomerRankingByWatchedMoviesEntry;
+import com.example.demo.repositories.interfaces.MonthIncomeEntry;
+import com.example.demo.repositories.interfaces.MonthRentActivityEntry;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+    @Query(nativeQuery = true, value = "select customer.customer_id, first_name, last_name, sum(payment.amount) as spent from customer join payment on customer.customer_id = payment.customer_id group by customer.customer_id order by spent desc limit 10")
+    List<CustomerRankingBySpentMoneyEntry> get10CustomersByMostSpentMoney();
+
+    @Query(nativeQuery = true, value = "select customer.customer_id, first_name, last_name, count(payment.amount) as watched from customer join payment on customer.customer_id = payment.customer_id group by customer.customer_id order by watched desc limit 10")
+    List<CustomerRankingByWatchedMoviesEntry> get10CustomersByMostMoviesWatched();
+
+    @Query(nativeQuery = true, value = "select month(rental_date) as month, count(rental_id) as rentMovies from rental group by month")
+    List<MonthRentActivityEntry> getRentMoviesByMonth();
+
+    @Query(nativeQuery = true, value = "select month(rental_date) as month, count(rental_id) as rentMovies from rental where customer_id = :#{#customer_id} group by month")
+    List<MonthRentActivityEntry> getRentMoviesByMonthForUser(@Param("customer_id") final int customerId);
+
+    @Query(nativeQuery = true, value = "select month(rental_date) as month, count(rental_id) as rentMovies from rental where year(rental_date) = :#{#year} group by month")
+    List<MonthRentActivityEntry> getRentMoviesByMonthForYear(@Param("year") final int year);
+
+    @Query(nativeQuery = true, value = "select month(rental_date) as month, count(rental_id) as rentMovies from rental where year(rental_date) = :#{#year} and customer_id = :#{#customer_id} group by month")
+    List<MonthRentActivityEntry> getRentMoviesByMonthForYearAndUser(@Param("customer_id") final int customerId, @Param("year") final int year);
+
+    @Query(nativeQuery = true, value = "select month(payment_date) as month, count(amount) as income from payment group by month")
+    List<MonthIncomeEntry> getMonthIncome();
+
+    @Query(nativeQuery = true, value = "select month(payment_date) as month, count(amount) as income from payment where year(payment_date) = :#{#year} group by month")
+    List<MonthIncomeEntry> getMonthIncomeForYear(@Param("year") final int year);
+
+    @Query(nativeQuery = true, value = "select month(payment_date) as month, count(amount) as income from payment where payment_date >= :fromDate and payment_date <= :toDate group by month")
+    List<MonthIncomeEntry> getIncomeForRange(@Param("fromDate") final String fromDate, @Param("toDate") final String toDate);
+}
