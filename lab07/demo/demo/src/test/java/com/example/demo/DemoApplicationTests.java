@@ -27,7 +27,7 @@ class DemoApplicationTests {
 	String exporter = "bar";
 
 	@Test
-	public void mockEnum() throws IOException {
+	public void staticExportShouldCallCorrectExporter() throws IOException {
 		ChartMaker mockChartMaker = Mockito.mock(ChartMaker.class);
 		mockChartMaker.export(exporter, response, dataset, title);
 		Mockito.verify(mockChartMaker.BAR.getExporter(), times(1)).export(dataset, title);
