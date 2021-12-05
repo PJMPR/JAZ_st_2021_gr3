@@ -1,32 +1,45 @@
 package com.example.demo.controllers;
 
+import com.example.demo.repositories.CustomerRecords;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.AbstractDataset;
-import org.jfree.data.general.PieDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 interface Exporter {
-    void export(HttpServletResponse response, AbstractDataset dataset, String title) throws IOException;
+    void export(HttpServletResponse response, List<CustomerRecords.DatasetEntry> dataset, String title) throws IOException;
 }
 
 public enum ChartMaker {
     PIE((response, dataset, title) -> {
-        JFreeChart pieChart = ChartFactory.createPieChart(title, (PieDataset<?>) dataset, true, true, true);
+        DefaultPieDataset<String> pieDataset = new DefaultPieDataset<>();
+
+        for (var item : dataset) {
+            pieDataset.setValue(item.key(), item.value());
+        }
+
+        JFreeChart pieChart = ChartFactory.createPieChart(title, pieDataset, true, true, true);
         ChartUtils.writeChartAsPNG(response.getOutputStream(), pieChart, 800, 600);
         response.flushBuffer();
     }),
     BAR((response, dataset, title) -> {
+        DefaultCategoryDataset barDataset = new DefaultCategoryDataset();
+
+        for (var item : dataset) {
+            barDataset.setValue(item.value(), "Value", item.key());
+        }
+
         JFreeChart barChart = ChartFactory.createBarChart(
                 title,
                 "",
                 title,
-                (DefaultCategoryDataset) dataset,
+                barDataset,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
@@ -38,11 +51,12 @@ public enum ChartMaker {
     });
 
     final private Exporter exporter;
+
     ChartMaker(Exporter exporter) {
         this.exporter = exporter;
     }
 
-    public void export(HttpServletResponse response, AbstractDataset dataset, String title) throws IOException {
-        this.exporter.export(response, dataset, title);
+    public static void export(String exporter, HttpServletResponse response, List<CustomerRecords.DatasetEntry> dataset, String title) throws IOException {
+        ChartMaker.valueOf(exporter.toUpperCase()).exporter.export(response, dataset, title);
     }
 }

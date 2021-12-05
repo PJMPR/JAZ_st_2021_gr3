@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +24,7 @@ public class CustomerActivityController {
     }
 
     @GetMapping("rentMoviesByMonth")
-    public ResponseEntity<List<CustomerRecords.MonthRentActivityEntry>> bySpentMoney(@RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year, @RequestParam("userId") final Optional<Integer> userId) {
+    public ResponseEntity<List<CustomerRecords.MonthRentActivityEntry>> bySpentMoney(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart, @RequestParam("year") final Optional<Integer> year, @RequestParam("userId") final Optional<Integer> userId) throws IOException {
 
         List<CustomerRecords.MonthRentActivityEntry> list;
         if (year.isPresent() && userId.isPresent()) {
@@ -35,6 +37,11 @@ public class CustomerActivityController {
             list = repository.getRentMoviesByMonth();
         }
 
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        if (chart.isEmpty()) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+
+        ChartMaker.export(chart.get(), response, CustomerRecords.MonthRentActivityEntry.toDatasetEntryList(list), "Rent movies by month.");
+        return null;
     }
 }

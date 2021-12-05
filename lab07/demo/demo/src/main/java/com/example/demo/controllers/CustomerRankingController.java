@@ -2,12 +2,6 @@ package com.example.demo.controllers;
 
 import com.example.demo.repositories.CustomerRecords;
 import com.example.demo.repositories.CustomerRepository;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,47 +25,25 @@ public class CustomerRankingController {
 
     @GetMapping("bySpentMoney")
     public ResponseEntity<List<CustomerRecords.CustomerRankingBySpentMoneyEntry>> bySpentMoney(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart) throws IOException {
-
         final var list = repository.get10CustomersByMostSpentMoney();
 
-        if (chart.isPresent()) {
-            if (chart.get().equals("pie")) {
-
-                DefaultPieDataset<String> pieDataset = new DefaultPieDataset<>();
-
-                for (var item : list) {
-                    pieDataset.setValue(item.getCustomer().firstName() + " " + item.getCustomer().lastName(), item.getSpent().doubleValue());
-                }
-
-                ChartMaker.PIE.export(response, pieDataset, "By spent money");
-            } else if (chart.get().equals("bar")) {
-                DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-                for (var item : list) {
-                    dataset.setValue(item.getSpent().doubleValue(), item.getCustomer().firstName() + " " + item.getCustomer().lastName(), "users");
-                }
-
-                JFreeChart barChart = ChartFactory.createBarChart(
-                        "bySpentMoney",
-                        "users",
-                        "bySpentMoney",
-                        dataset,
-                        PlotOrientation.VERTICAL,
-                        true,
-                        true,
-                        false
-                );
-
-                ChartUtils.writeChartAsPNG(response.getOutputStream(), barChart, 800, 600);
-                response.flushBuffer();
-            }
+        if (chart.isEmpty()) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>(list, HttpStatus.OK);
+        ChartMaker.export(chart.get(), response, CustomerRecords.CustomerRankingBySpentMoneyEntry.toDatasetEntryList(list), "By spent money.");
+        return null;
     }
 
     @GetMapping("byWatchedMovies")
-    public ResponseEntity<List<CustomerRecords.CustomerRankingByWatchedMoviesEntry>> byWatchedMovies(@RequestParam("chart") final Optional<String> chart) {
-        return new ResponseEntity<>(repository.get10CustomersByMostMoviesWatched(), HttpStatus.OK);
+    public ResponseEntity<List<CustomerRecords.CustomerRankingByWatchedMoviesEntry>> byWatchedMovies(HttpServletResponse response, @RequestParam("chart") final Optional<String> chart) throws IOException {
+        final var list = repository.get10CustomersByMostMoviesWatched();
+
+        if (chart.isEmpty()) {
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }
+
+        ChartMaker.export(chart.get(), response, CustomerRecords.CustomerRankingByWatchedMoviesEntry.toDatasetEntryList(list), "By watched movies.");
+        return null;
     }
 }
