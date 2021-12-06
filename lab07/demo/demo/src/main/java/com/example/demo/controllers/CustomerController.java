@@ -42,8 +42,16 @@ public class CustomerController {
 
     @GetMapping
     @RequestMapping("/ranking/bySpentMoney")
-    public ResponseEntity<List<CustomerDTO>> TopTenRichestClients(){
+    public ResponseEntity<List<CustomerDTO>> topTenRichestClients(){
 
         return new ResponseEntity<List<CustomerDTO>>(service.getTop10(), HttpStatus.OK);
     }
+
+    @GetMapping
+    @RequestMapping("/ranking/byWatchedMovies")
+    public ResponseEntity<List<CustomerDTO>> topTenMoveManiacs(){
+
+        return new ResponseEntity<List<CustomerDTO>>(service.getTop10MovieManiacs(), HttpStatus.OK);
+    }
+
 }

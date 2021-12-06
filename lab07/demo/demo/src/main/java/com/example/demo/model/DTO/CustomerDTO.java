@@ -1,16 +1,13 @@
 package com.example.demo.model.DTO;
 
-import com.example.demo.model.Payment;
-import com.example.demo.model.Rental;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.List;
 
-import static org.apache.coyote.http11.Constants.a;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -20,9 +17,10 @@ public class CustomerDTO {
     private int customerId;
     private String firstName;
     private String lastName;
+    private BigDecimal spent;
+    private int watched;
     private Collection<PaymentDTO> paymentsByCustomerId;
     private Collection<RentalDTO> rentalsByCustomerId;
-    private BigDecimal spent = BigDecimal.valueOf(0);
 
     public int getCustomerId() {
         return customerId;
@@ -48,20 +46,28 @@ public class CustomerDTO {
         this.lastName = lastName;
     }
 
-    @Override
-    public String toString() {
-        return "CustomerDTO{" +
-                "customerId=" + customerId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
-    public void calculatePayments(){
-
-        for(PaymentDTO paymendDt : paymentsByCustomerId){
-            spent.add(paymendDt.getAmount());
-        }
+    public BigDecimal getSpent() {
+        return spent;
     }
 
+    public void setSpent(BigDecimal spent) {
+        this.spent = spent;
+    }
+
+    public int getWatched() {
+        return watched;
+    }
+
+    public void setWatched(int watched) {
+        this.watched = watched;
+    }
+
+    public BigDecimal calculatePayments(){
+        return paymentsByCustomerId.stream().map(PaymentDTO::getAmount)
+                .reduce(BigDecimal.valueOf(0), BigDecimal::add);
+    }
+    public int calcuateMovies(){
+        return paymentsByCustomerId.size();
+    }
 }
 
