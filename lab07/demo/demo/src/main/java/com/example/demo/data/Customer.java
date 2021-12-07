@@ -1,8 +1,10 @@
-package com.example.demo.model;
+package com.example.demo.data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -13,8 +15,10 @@ public class Customer {
     private byte active;
     private Timestamp createDate;
     private Timestamp lastUpdate;
-    private Collection<Payment> paymentsByCustomerId;
-    private Collection<Rental> rentalsByCustomerId;
+    private Store store;
+    private Address address;
+    private List<Payment> payments;
+    private List<Rental> rentalsByCustomer;
 
     @Id
     @Column(name = "customer_id")
@@ -116,21 +120,56 @@ public class Customer {
         return result;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false)
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id", nullable = false)
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @OneToMany(mappedBy = "customerByCustomerId")
-    public Collection<Payment> getPaymentsByCustomerId() {
-        return paymentsByCustomerId;
+    public List<Payment> getPayments() {
+        return payments;
     }
 
-    public void setPaymentsByCustomerId(Collection<Payment> paymentsByCustomerId) {
-        this.paymentsByCustomerId = paymentsByCustomerId;
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 
     @OneToMany(mappedBy = "customerByCustomerId")
-    public Collection<Rental> getRentalsByCustomerId() {
-        return rentalsByCustomerId;
+    public List<Rental> getRentalsByCustomer() {
+        return rentalsByCustomer;
     }
 
-    public void setRentalsByCustomerId(Collection<Rental> rentalsByCustomerId) {
-        this.rentalsByCustomerId = rentalsByCustomerId;
+    public void setRentalsByCustomer(List<Rental> rentalsByCustomer) {
+        this.rentalsByCustomer = rentalsByCustomer;
     }
+
+    public BigDecimal amountSpent(){
+        return payments.stream().map(Payment::getAmount).reduce(BigDecimal.valueOf(0), BigDecimal::add);
+    }
+
+    public int moviesWatched(){
+        return payments.size();
+    }
+
+    public int getRentalsByMonth(int year, int month){
+        Timestamp timeFrom = Timestamp.valueOf(year+"-"+month+"-01 00:00:01");
+        Timestamp timeTo = Timestamp.valueOf(year+"-"+month+"-31 23:59:59");
+        return (int)getRentalsByCustomer().stream().map(Rental::getRentalDate).filter(x -> x.after(timeFrom) && x.before(timeTo)).count();
+    }
+
 }
