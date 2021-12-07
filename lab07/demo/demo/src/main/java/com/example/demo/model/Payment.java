@@ -3,6 +3,7 @@ package com.example.demo.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 public class Payment {
@@ -61,9 +62,9 @@ public class Payment {
         Payment payment = (Payment) o;
 
         if (paymentId != payment.paymentId) return false;
-        if (amount != null ? !amount.equals(payment.amount) : payment.amount != null) return false;
-        if (paymentDate != null ? !paymentDate.equals(payment.paymentDate) : payment.paymentDate != null) return false;
-        if (lastUpdate != null ? !lastUpdate.equals(payment.lastUpdate) : payment.lastUpdate != null) return false;
+        if (!Objects.equals(amount, payment.amount)) return false;
+        if (!Objects.equals(paymentDate, payment.paymentDate)) return false;
+        if (!Objects.equals(lastUpdate, payment.lastUpdate)) return false;
 
         return true;
     }
