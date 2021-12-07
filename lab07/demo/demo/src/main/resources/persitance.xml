@@ -4,50 +4,19 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="TestPersistence" transaction-type="RESOURCE_LOCAL">
         <class>javax.persistence.EntityManager</class>
-        <class>com.example.demo.data.Actor</class>
-        <class>com.example.demo.data.Address</class>
-        <class>com.example.demo.data.Category</class>
-        <class>com.example.demo.data.City</class>
-        <class>com.example.demo.data.Country</class>
-        <class>com.example.demo.data.Customer</class>
-        <class>com.example.demo.data.Film</class>
-        <class>com.example.demo.data.FilmActor</class>
-        <class>com.example.demo.data.FilmCategory</class>
-        <class>com.example.demo.data.FilmText</class>
-        <class>com.example.demo.data.Inventory</class>
-        <class>com.example.demo.data.Language</class>
-        <class>com.example.demo.data.Payment</class>
-        <class>com.example.demo.data.Rental</class>
-        <class>com.example.demo.data.Staff</class>
-        <class>com.example.demo.data.Store</class>
-
-
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sakila" />
-            <property name="javax.persistence.jdbc.user" value="pjwstk" />
-            <property name="javax.persistence.jdbc.password" value="password" />
+            <property name="javax.persistence.jdbc.user" value="Jaz" />
+            <property name="javax.persistence.jdbc.password" value="root" />
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/sakila"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
         </properties>
     </persistence-unit>
     <persistence-unit name="persistenceUnit">
-        <class>com.example.demo.DBModel.Actor</class>
-        <class>com.example.demo.DBModel.Address</class>
-        <class>com.example.demo.DBModel.Category</class>
-        <class>com.example.demo.DBModel.City</class>
-        <class>com.example.demo.DBModel.Country</class>
         <class>com.example.demo.DBModel.Customer</class>
-        <class>com.example.demo.DBModel.Film</class>
-        <class>com.example.demo.DBModel.FilmActor</class>
-        <class>com.example.demo.DBModel.FilmCategory</class>
-        <class>com.example.demo.DBModel.FilmText</class>
-        <class>com.example.demo.DBModel.Inventory</class>
-        <class>com.example.demo.DBModel.Language</class>
         <class>com.example.demo.DBModel.Payment</class>
         <class>com.example.demo.DBModel.Rental</class>
-        <class>com.example.demo.DBModel.Staff</class>
-        <class>com.example.demo.DBModel.Store</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/sakila"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>

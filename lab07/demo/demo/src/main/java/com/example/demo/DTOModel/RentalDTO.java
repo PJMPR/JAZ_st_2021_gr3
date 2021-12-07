@@ -1,12 +1,14 @@
 package com.example.demo.DTOModel;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 
 public class RentalDTO {
     private int rentalId;
     private Timestamp rentalDate;
     private Timestamp returnDate;
     private Timestamp lastUpdate;
+    private Collection<PaymentDTO> payments;
 
     public int getRentalId() {
         return rentalId;
@@ -38,5 +40,13 @@ public class RentalDTO {
 
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public Collection<PaymentDTO> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(Collection<PaymentDTO> payments) {
+        this.payments = payments;
     }
 }
