@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +11,7 @@ public class Payment {
     private Timestamp paymentDate;
     private Timestamp lastUpdate;
     private Customer customerByCustomerId;
+    private Staff staffByStaffId;
     private Rental rentalByRentalId;
 
     @Id
@@ -85,6 +86,16 @@ public class Payment {
 
     public void setCustomerByCustomerId(Customer customerByCustomerId) {
         this.customerByCustomerId = customerByCustomerId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id", referencedColumnName = "staff_id", nullable = false)
+    public Staff getStaffByStaffId() {
+        return staffByStaffId;
+    }
+
+    public void setStaffByStaffId(Staff staffByStaffId) {
+        this.staffByStaffId = staffByStaffId;
     }
 
     @ManyToOne

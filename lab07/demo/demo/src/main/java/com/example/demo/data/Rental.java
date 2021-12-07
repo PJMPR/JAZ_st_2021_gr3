@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -11,7 +11,9 @@ public class Rental {
     private Timestamp returnDate;
     private Timestamp lastUpdate;
     private Collection<Payment> paymentsByRentalId;
+    private Inventory inventoryByInventoryId;
     private Customer customerByCustomerId;
+    private Staff staffByStaffId;
 
     @Id
     @Column(name = "rental_id")
@@ -87,6 +89,16 @@ public class Rental {
     }
 
     @ManyToOne
+    @JoinColumn(name = "inventory_id", referencedColumnName = "inventory_id", nullable = false)
+    public Inventory getInventoryByInventoryId() {
+        return inventoryByInventoryId;
+    }
+
+    public void setInventoryByInventoryId(Inventory inventoryByInventoryId) {
+        this.inventoryByInventoryId = inventoryByInventoryId;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
     public Customer getCustomerByCustomerId() {
         return customerByCustomerId;
@@ -94,5 +106,15 @@ public class Rental {
 
     public void setCustomerByCustomerId(Customer customerByCustomerId) {
         this.customerByCustomerId = customerByCustomerId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id", referencedColumnName = "staff_id", nullable = false)
+    public Staff getStaffByStaffId() {
+        return staffByStaffId;
+    }
+
+    public void setStaffByStaffId(Staff staffByStaffId) {
+        this.staffByStaffId = staffByStaffId;
     }
 }
