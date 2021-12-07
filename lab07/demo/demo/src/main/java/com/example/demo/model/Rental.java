@@ -63,9 +63,7 @@ public class Rental {
         if (rentalId != rental.rentalId) return false;
         if (rentalDate != null ? !rentalDate.equals(rental.rentalDate) : rental.rentalDate != null) return false;
         if (returnDate != null ? !returnDate.equals(rental.returnDate) : rental.returnDate != null) return false;
-        if (lastUpdate != null ? !lastUpdate.equals(rental.lastUpdate) : rental.lastUpdate != null) return false;
-
-        return true;
+        return lastUpdate != null ? lastUpdate.equals(rental.lastUpdate) : rental.lastUpdate == null;
     }
 
     @Override

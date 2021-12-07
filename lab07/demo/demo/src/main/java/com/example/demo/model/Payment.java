@@ -63,9 +63,7 @@ public class Payment {
         if (paymentId != payment.paymentId) return false;
         if (amount != null ? !amount.equals(payment.amount) : payment.amount != null) return false;
         if (paymentDate != null ? !paymentDate.equals(payment.paymentDate) : payment.paymentDate != null) return false;
-        if (lastUpdate != null ? !lastUpdate.equals(payment.lastUpdate) : payment.lastUpdate != null) return false;
-
-        return true;
+        return lastUpdate != null ? lastUpdate.equals(payment.lastUpdate) : payment.lastUpdate == null;
     }
 
     @Override

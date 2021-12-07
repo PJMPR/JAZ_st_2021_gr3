@@ -1,0 +1,11 @@
+package com.example.demo.charts;
+
+import org.jfree.data.general.AbstractDataset;
+
+import java.io.IOException;
+
+public interface IChart {
+    byte[] generate(String title, String type, String xAxisLabel, String yAxisLabel) throws IOException;
+
+    AbstractDataset getDataset();
+}
