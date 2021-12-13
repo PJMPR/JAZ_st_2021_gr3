@@ -22,7 +22,7 @@ public class MoviesClientController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity GetMovie(@PathVariable int id){
+    public ResponseEntity<MovieDto> GetMovie(@PathVariable int id){
 
         var movie = rest.getForEntity("https://api.themoviedb.org/3/movie/" +
                 id +
