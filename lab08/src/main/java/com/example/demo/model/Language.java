@@ -1,8 +1,13 @@
 package com.example.demo.model;
 
+import com.example.demo.contract.Movie;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collection;
+import java.util.Locale;
+import java.util.Objects;
 
 @Entity
 public class Language {
@@ -10,6 +15,19 @@ public class Language {
     private String name;
     private Timestamp lastUpdate;
     private Collection<Film> films;
+
+    public Language(String name, Timestamp lastUpdate) {
+        this.name = name;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Language() {
+    }
+
+    public static Language fromMovie(Movie movie) {
+        var loc = new Locale(movie.getLanguage());
+        return new Language(loc.getDisplayLanguage(loc), Timestamp.from(Instant.now()));
+    }
 
     @Id
     @Column(name = "language_id")
@@ -49,17 +67,13 @@ public class Language {
         Language language = (Language) o;
 
         if (languageId != language.languageId) return false;
-        if (name != null ? !name.equals(language.name) : language.name != null) return false;
-        if (lastUpdate != null ? !lastUpdate.equals(language.lastUpdate) : language.lastUpdate != null) return false;
-
-        return true;
+        return name.equalsIgnoreCase(language.name);
     }
 
     @Override
     public int hashCode() {
         int result = languageId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (lastUpdate != null ? lastUpdate.hashCode() : 0);
         return result;
     }
 

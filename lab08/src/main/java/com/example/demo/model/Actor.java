@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import com.example.demo.contract.Person;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collection;
 
 @Entity
@@ -11,6 +14,20 @@ public class Actor {
     private String lastName;
     private Timestamp lastUpdate;
     private Collection<FilmActor> filmActors;
+
+    public Actor(int actorId, String firstName, String lastName, Timestamp lastUpdate) {
+        this.actorId = actorId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Actor() { }
+
+    public static Actor fromPerson(Person person) {
+        var r = person.getName().split(" ", 2);
+        return new Actor(person.getId(), r[0], r[r.length > 1 ? 1 : 0], Timestamp.from(Instant.now()));
+    }
 
     @Id
     @Column(name = "actor_id")

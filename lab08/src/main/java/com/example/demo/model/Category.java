@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import com.example.demo.contract.Genre;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collection;
 
 @Entity
@@ -10,6 +13,18 @@ public class Category {
     private String name;
     private Timestamp lastUpdate;
     private Collection<FilmCategory> filmCategories;
+
+    public Category(int categoryId, String name, Timestamp lastUpdate) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.lastUpdate = lastUpdate;
+    }
+
+    public Category() { }
+
+    public static Category fromGenre(Genre genre) {
+        return new Category(genre.getId(), genre.getName(), Timestamp.from(Instant.now()));
+    }
 
     @Id
     @Column(name = "category_id")

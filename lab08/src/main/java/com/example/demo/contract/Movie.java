@@ -2,10 +2,22 @@ package com.example.demo.contract;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MovieDto {
+public class Movie {
 
     @JsonProperty("original_title")
     String title;
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    @JsonProperty("original_language")
+    String language;
+
     String overview;
     int id;
     @JsonProperty("imdb_id")

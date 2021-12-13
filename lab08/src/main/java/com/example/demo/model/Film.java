@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import com.example.demo.contract.Movie;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collection;
 
 @Entity
@@ -16,6 +19,17 @@ public class Film {
     private Language language;
     private Collection<FilmActor> filmActors;
     private Collection<FilmCategory> filmCategories;
+
+    public Film() {
+    }
+
+    public Film(int filmId, String title, String description, Timestamp lastUpdate, Language language) {
+        this.filmId = filmId;
+        this.title = title;
+        this.description = description;
+        this.lastUpdate = lastUpdate;
+        this.language = language;
+    }
 
     @Id
     @Column(name = "film_id")
@@ -143,5 +157,9 @@ public class Film {
 
     public void setFilmCategories(Collection<FilmCategory> filmCategories) {
         this.filmCategories = filmCategories;
+    }
+
+    public static Film fromMovie(Movie movie) {
+        return new Film(movie.getId(), movie.getTitle(), movie.getOverview(), Timestamp.from(Instant.now()), Language.fromMovie(movie));
     }
 }
