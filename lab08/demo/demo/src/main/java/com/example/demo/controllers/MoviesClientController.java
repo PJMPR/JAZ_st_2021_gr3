@@ -16,7 +16,7 @@ public class MoviesClientController {
     RestTemplate rest;
     String apikey;
 
-    public MoviesClientController(RestTemplate rest,@Value("${themoviedb.api.key}") String apiKey) {
+    public MoviesClientController(RestTemplate rest,@Value("apikeytest") String apiKey) {
         this.rest = rest;
         this.apikey= apiKey;
     }
@@ -30,6 +30,11 @@ public class MoviesClientController {
 
         return ResponseEntity.ok(movie);
 
+    }
+    @GetMapping("/a")
+    public ResponseEntity a (){
+        System.out.println("hehe");
+        return ResponseEntity.ok("ok");
     }
 
 }

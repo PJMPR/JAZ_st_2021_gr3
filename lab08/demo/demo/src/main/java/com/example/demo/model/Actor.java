@@ -12,6 +12,11 @@ public class Actor {
     private Timestamp lastUpdate;
     private Collection<FilmActor> filmActors;
 
+    public Actor(String firstName, String lastName, Timestamp lastUpdate){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.lastUpdate = lastUpdate;
+    }
     @Id
     @Column(name = "actor_id")
     public int getActorId() {
