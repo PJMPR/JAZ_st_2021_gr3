@@ -14,11 +14,9 @@ import org.springframework.web.client.RestTemplate;
 public class MoviesClientController {
 
     RestTemplate rest;
-    String apikey;
 
-    public MoviesClientController(RestTemplate rest,@Value("${themoviedb.api.key}") String apiKey) {
+    public MoviesClientController(RestTemplate rest) {
         this.rest = rest;
-        this.apikey= apiKey;
     }
 
     @GetMapping("{id}")
@@ -26,7 +24,7 @@ public class MoviesClientController {
 
         var movie = rest.getForEntity("https://api.themoviedb.org/3/movie/" +
                 id +
-                "?api_key=" + apikey, MovieDto.class).getBody();
+                "?api_key=aaa1e2f9cf290db26e0ebf0c7cddc455" , MovieDto.class).getBody();
 
         return ResponseEntity.ok(movie);
 
