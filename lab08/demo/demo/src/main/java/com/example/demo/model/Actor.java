@@ -1,16 +1,27 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
 public class Actor {
     private int actorId;
+
+    public Actor(){}
+
+    public Actor(String firstName, String lastName, Timestamp lastUpdate){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.lastUpdate = lastUpdate;
+    }
+
     private String firstName;
     private String lastName;
     private Timestamp lastUpdate;
     private Collection<FilmActor> filmActors;
+
 
     @Id
     @Column(name = "actor_id")

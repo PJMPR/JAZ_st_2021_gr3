@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.contract.MovieDto;
-import org.springframework.beans.factory.annotation.Value;
+import com.example.demo.service.FilmService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,22 +13,25 @@ import org.springframework.web.client.RestTemplate;
 public class MoviesClientController {
 
     RestTemplate rest;
-    String apikey;
+    FilmService filmService;
 
-    public MoviesClientController(RestTemplate rest,@Value("${themoviedb.api.key}") String apiKey) {
+
+    public MoviesClientController(RestTemplate rest, FilmService filmService) {
         this.rest = rest;
-        this.apikey= apiKey;
+        this.filmService = filmService;
     }
 
     @GetMapping("{id}")
     public ResponseEntity GetMovie(@PathVariable int id){
-
-        var movie = rest.getForEntity("https://api.themoviedb.org/3/movie/" +
-                id +
-                "?api_key=" + apikey, MovieDto.class).getBody();
-
+        var movie = filmService.getMovieFromTheMovieDb(id);
         return ResponseEntity.ok(movie);
 
+    }
+
+    @GetMapping("/imdb/{id}")
+    public ResponseEntity getDataIMDB(@PathVariable String id){
+        var movie = filmService.getMovieFromIMDB(id);
+        return ResponseEntity.ok(movie);
     }
 
 }

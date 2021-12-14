@@ -1,6 +1,9 @@
 package com.example.demo.contract;
 
+import com.example.demo.model.Actor;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 
 public class MovieDto {
 
@@ -10,6 +13,7 @@ public class MovieDto {
     int id;
     @JsonProperty("imdb_id")
     String imdbId;
+
 
     public String getTitle() {
         return title;
