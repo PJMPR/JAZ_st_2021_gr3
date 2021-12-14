@@ -1,35 +1,44 @@
 package com.example.demo.controllers;
 
 import com.example.demo.contract.MovieDto;
-import org.springframework.beans.factory.annotation.Value;
+import com.example.demo.serviceAndRepo.Service;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RequestMapping("movies-client")
 public class MoviesClientController {
+   private Service service;
 
-    RestTemplate rest;
-    String apikey;
-
-    public MoviesClientController(RestTemplate rest,@Value("${themoviedb.api.key}") String apiKey) {
-        this.rest = rest;
-        this.apikey= apiKey;
+    public MoviesClientController(Service service) {
+        this.service = service;
     }
 
     @GetMapping("{id}")
     public ResponseEntity GetMovie(@PathVariable int id){
 
-        var movie = rest.getForEntity("https://api.themoviedb.org/3/movie/" +
-                id +
-                "?api_key=" + apikey, MovieDto.class).getBody();
+        MovieDto movie = service.getMovie(id);
+        service.moviedtoTOFilmAndSave(movie);
 
-        return ResponseEntity.ok(movie);
+        return new ResponseEntity(movie,HttpStatus.OK);
+
+    }
+    @GetMapping("updater/reload")
+    public void reload(){
+    }
+
+    @GetMapping("updater/reload?year={year}")
+    public void reloadSpecyficYear(@PathVariable int year){
 
     }
 
-}
+    @GetMapping("updater/status")
+    public void returnStatus(){
+
+    }
+
+    }

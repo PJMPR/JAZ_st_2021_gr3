@@ -17,6 +17,22 @@ public class Film {
     private Collection<FilmActor> filmActors;
     private Collection<FilmCategory> filmCategories;
 
+    @Override
+    public String toString() {
+        return "Film{" +
+                "filmId=" + filmId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", length=" + length +
+                ", rating='" + rating + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                ", language=" + language.getName() +
+                ", filmActors=" + filmActors +
+                ", filmCategories=" + filmCategories +
+                '}';
+    }
+
     @Id
     @Column(name = "film_id")
     public int getFilmId() {
