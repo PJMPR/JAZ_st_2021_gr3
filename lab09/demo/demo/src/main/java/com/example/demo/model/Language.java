@@ -1,15 +1,31 @@
 package com.example.demo.model;
 
+import com.example.demo.contracts.LanguageDto;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collection;
+import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Language {
     private Integer languageId;
     private String name;
     private Timestamp lastUpdate;
     private Collection<Film> films;
+
+    public static Language from(LanguageDto source) {
+        return new Language(source.getId(), source.getName(), Timestamp.from(Instant.now()), List.of());
+    }
+
+    public static LanguageDto to(Language source) {
+        return new LanguageDto(source.getLanguageId(), source.getName());
+    }
 
     @Id
     @Column(name = "language_id")

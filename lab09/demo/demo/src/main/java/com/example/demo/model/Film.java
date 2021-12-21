@@ -1,10 +1,17 @@
 package com.example.demo.model;
 
+import com.example.demo.contracts.FilmDto;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Film {
     private Integer filmId;
     private String title;
@@ -14,6 +21,14 @@ public class Film {
     private BigDecimal replacementCost;
     private Timestamp lastUpdate;
     private Language language;
+
+    public static Film from(FilmDto source) {
+        return new Film(source.getId(), source.getTitle(), source.getReleaseYear(), source.getRentalDuration(), source.getRentalRate(), source.getReplacementCosts(), Timestamp.from(Instant.now()), Language.from(source.getLanguage()));
+    }
+
+    public static FilmDto to(Film source) {
+        return new FilmDto(source.getFilmId(), source.getTitle(), source.getReleaseYear(), Language.to(source.getLanguage()), source.getRentalDuration(), source.getRentalRate() ,source.getReplacementCost());
+    }
 
     @Id
     @Column(name = "film_id")
