@@ -23,4 +23,5 @@ public class QueryBuilder  {
     public void clear() {
         query = "SELECT film FROM Film film ";
     }
+
 }

@@ -19,16 +19,6 @@ import java.math.BigDecimal;
 public class FilmsController {
 
     private final FilmService filmService;
-//    private static final List<FilmDto> films= List.of(
-//            new FilmDto(1, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-//            new FilmDto(2, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-//            new FilmDto(3, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-//            new FilmDto(4, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-//            new FilmDto(5, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-//            new FilmDto(6, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-//            new FilmDto(7, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-//            new FilmDto(8, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11))
-//    ).stream().collect(Collectors.toList());
 
 
     @GetMapping()

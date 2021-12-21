@@ -25,42 +25,23 @@ public class FilmService {
         paramsMap.showAll();
 
         if(paramsMap.getIntegersValues().get("id") != null){
-            System.out.println("TO ID " + paramsMap.getIntegersValues().get("id"));
-
-            amountOfParamsInQuery++;
             prepareQuery("id",paramsMap);
         }
         if(paramsMap.getIntegersValues().get("releaseYear") != null){
-            System.out.println("TO releaseyear " + paramsMap.getIntegersValues().get("releaseYear"));
-
-            amountOfParamsInQuery++;
             prepareQuery("releaseYear",paramsMap);
         }
         if(paramsMap.getIntegersValues().get("rentalDuration") != null){
-            System.out.println("TO rentalDuration " + paramsMap.getIntegersValues().get("rentalDuration"));
-
-            amountOfParamsInQuery++;
             prepareQuery("rentalDuration",paramsMap);
         }
         if(paramsMap.getBigDecimalValues().get("rentalRate") != null){
-            System.out.println("TO rentalRate " + paramsMap.getBigDecimalValues().get("rentalRate"));
-
-            amountOfParamsInQuery++;
             prepareQuery("rentalRate",paramsMap);
         }
         if(paramsMap.getBigDecimalValues().get("replacementCost") != null){
-            System.out.println("TO replacementCost " + paramsMap.getBigDecimalValues().get("replacementCost"));
-
-            amountOfParamsInQuery++;
             prepareQuery("replacementCost",paramsMap);
         }
         if(paramsMap.getStringValue() != null){
             if(!paramsMap.getStringValue().equals("")){
-                System.out.println("TO title " + paramsMap.getStringValue());
-                // mozna dodac do zapytania LIKE cos na podobe lupy zeby nie trzeba bylo wpisywac calego tytulu poprawnie
-
-                amountOfParamsInQuery++;
-                prepareQuery("title",paramsMap);
+                prepareTitleQuery(paramsMap.getStringValue());
             }
         }
         if(paramsMap.getLanguageValue() != null){
@@ -75,10 +56,7 @@ public class FilmService {
         clearQuery();
 
 
-        if(films.size() < 1){
-            return null;
-        }else {
-            return films.stream().map(film -> new FilmDto(film.getFilmId(),
+        return films.stream().map(film -> new FilmDto(film.getFilmId(),
                             film.getTitle(),
                             film.getReleaseYear(),
                             new LanguageDto(film.getLanguage().getLanguageId(), film.getTitle()),
@@ -86,9 +64,22 @@ public class FilmService {
                             film.getRentalRate(),
                             film.getReplacementCost()))
                     .collect(Collectors.toList());
-        }
 
     }
+
+    private void prepareTitleQuery( String title) {
+        amountOfParamsInQuery++;
+
+        if(amountOfParamsInQuery > 1){
+            queryBuilder.addAND();
+        }else {
+            queryBuilder.addWhere();
+        }
+
+        queryBuilder.addToQuery("film.title LIKE '" +title +"%'");
+
+    }
+
 
     private int recordsToSkip(HashMapParamsFilms paramsMap) {
         int page;
@@ -107,6 +98,7 @@ public class FilmService {
         System.out.println("INFO INFO INFO ");
         System.out.println();
 
+        amountOfParamsInQuery++;
         if(amountOfParamsInQuery > 1){
             queryBuilder.addAND();
         }else {
