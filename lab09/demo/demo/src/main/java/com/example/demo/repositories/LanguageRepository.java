@@ -1,14 +1,31 @@
 package com.example.demo.repositories;
 
+import com.example.demo.contracts.LanguageDto;
 import com.example.demo.model.Language;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public interface LanguageRepository extends JpaRepository<Language, Integer> {
 
-    @Query(value = "SELECT language FROM Language language WHERE language.name=:name")
-    public List<Language> findAllByName(String name);
+@Repository
+@RequiredArgsConstructor
+public class LanguageRepository {
+    private final EntityManager entityManager;
+
+    public List<LanguageDto> getLanguages(){
+        return entityManager.createQuery(
+                        "SELECT language from Language language", Language.class
+                ).getResultList()
+                .stream()
+                .map(language -> new LanguageDto(language.getLanguageId(), language.getName()))
+                .collect(Collectors.toList());
+    }
+
+    public Language getLanguageById(int id){
+        return entityManager.createQuery(
+                        "select language from Language language where language.languageId=:id",Language.class)
+                .setParameter("id",id).getSingleResult();
+    }
 }

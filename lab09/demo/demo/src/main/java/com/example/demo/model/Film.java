@@ -6,10 +6,10 @@ import java.sql.Timestamp;
 
 @Entity
 public class Film {
-    private Integer filmId;
+    private int filmId;
     private String title;
-    private Integer releaseYear;
-    private Integer rentalDuration;
+    private int releaseYear;
+    private int rentalDuration;
     private BigDecimal rentalRate;
     private BigDecimal replacementCost;
     private Timestamp lastUpdate;
@@ -17,11 +17,11 @@ public class Film {
 
     @Id
     @Column(name = "film_id")
-    public Integer getFilmId() {
+    public int getFilmId() {
         return filmId;
     }
 
-    public void setFilmId(Integer filmId) {
+    public void setFilmId(int filmId) {
         this.filmId = filmId;
     }
 
@@ -37,21 +37,21 @@ public class Film {
 
     @Basic
     @Column(name = "release_year")
-    public Integer getReleaseYear() {
+    public int getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(Integer releaseYear) {
+    public void setReleaseYear(int releaseYear) {
         this.releaseYear = releaseYear;
     }
 
     @Basic
     @Column(name = "rental_duration")
-    public Integer getRentalDuration() {
+    public int getRentalDuration() {
         return rentalDuration;
     }
 
-    public void setRentalDuration(Integer rentalDuration) {
+    public void setRentalDuration(int rentalDuration) {
         this.rentalDuration = rentalDuration;
     }
 
@@ -92,11 +92,10 @@ public class Film {
 
         Film film = (Film) o;
 
-        if (filmId != null ? !filmId.equals(film.filmId) : film.filmId != null) return false;
+        if (filmId != film.filmId) return false;
+        if (releaseYear != film.releaseYear) return false;
+        if (rentalDuration != film.rentalDuration) return false;
         if (title != null ? !title.equals(film.title) : film.title != null) return false;
-        if (releaseYear != null ? !releaseYear.equals(film.releaseYear) : film.releaseYear != null) return false;
-        if (rentalDuration != null ? !rentalDuration.equals(film.rentalDuration) : film.rentalDuration != null)
-            return false;
         if (rentalRate != null ? !rentalRate.equals(film.rentalRate) : film.rentalRate != null) return false;
         if (replacementCost != null ? !replacementCost.equals(film.replacementCost) : film.replacementCost != null)
             return false;
@@ -107,10 +106,10 @@ public class Film {
 
     @Override
     public int hashCode() {
-        int result = filmId != null ? filmId.hashCode() : 0;
+        int result = filmId;
         result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (releaseYear != null ? releaseYear.hashCode() : 0);
-        result = 31 * result + (rentalDuration != null ? rentalDuration.hashCode() : 0);
+        result = 31 * result + releaseYear;
+        result = 31 * result + rentalDuration;
         result = 31 * result + (rentalRate != null ? rentalRate.hashCode() : 0);
         result = 31 * result + (replacementCost != null ? replacementCost.hashCode() : 0);
         result = 31 * result + (lastUpdate != null ? lastUpdate.hashCode() : 0);

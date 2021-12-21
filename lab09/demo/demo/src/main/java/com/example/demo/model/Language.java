@@ -2,22 +2,21 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Language {
-    private Integer languageId;
+    private int languageId;
     private String name;
     private Timestamp lastUpdate;
-    private Collection<Film> films;
+    //private Collection<Film> filmsByLanguageId;
 
     @Id
     @Column(name = "language_id")
-    public Integer getLanguageId() {
+    public int getLanguageId() {
         return languageId;
     }
 
-    public void setLanguageId(Integer languageId) {
+    public void setLanguageId(int languageId) {
         this.languageId = languageId;
     }
 
@@ -48,7 +47,7 @@ public class Language {
 
         Language language = (Language) o;
 
-        if (languageId != null ? !languageId.equals(language.languageId) : language.languageId != null) return false;
+        if (languageId != language.languageId) return false;
         if (name != null ? !name.equals(language.name) : language.name != null) return false;
         if (lastUpdate != null ? !lastUpdate.equals(language.lastUpdate) : language.lastUpdate != null) return false;
 
@@ -57,18 +56,18 @@ public class Language {
 
     @Override
     public int hashCode() {
-        int result = languageId != null ? languageId.hashCode() : 0;
+        int result = languageId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (lastUpdate != null ? lastUpdate.hashCode() : 0);
         return result;
     }
 
-    @OneToMany(mappedBy = "language")
-    public Collection<Film> getFilms() {
-        return films;
-    }
-
-    public void setFilms(Collection<Film> films) {
-        this.films = films;
-    }
+//    @OneToMany(mappedBy = "language")
+//    public Collection<Film> getFilmsByLanguageId() {
+//        return filmsByLanguageId;
+//    }
+//
+//    public void setFilmsByLanguageId(Collection<Film> filmsByLanguageId) {
+//        this.filmsByLanguageId = filmsByLanguageId;
+//    }
 }

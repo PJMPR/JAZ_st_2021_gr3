@@ -2,48 +2,62 @@ package com.example.demo.controllers;
 
 import com.example.demo.contracts.FilmDto;
 import com.example.demo.contracts.LanguageDto;
-import com.example.demo.services.FilmService;
+import com.example.demo.repositories.FilmsRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("api/films")
+@RequiredArgsConstructor
 public class FilmsController {
 
-    private final FilmService filmService;
-    private static final List<FilmDto> films= List.of(
-            new FilmDto(1, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-            new FilmDto(2, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-            new FilmDto(3, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-            new FilmDto(4, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-            new FilmDto(5, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-            new FilmDto(6, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-            new FilmDto(7, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11)),
-            new FilmDto(8, "nowy tytul", 2, new LanguageDto(1,"polish"),3, new BigDecimal(2.99), new BigDecimal(30.11))
-    ).stream().collect(Collectors.toList());
+    private final FilmsRepository filmsRepository;
 
     @GetMapping
-    public ResponseEntity getFilms(){
-        return ResponseEntity.ok(filmService.getFilms());
+    public ResponseEntity<List<FilmDto>> getFilms(@RequestParam(defaultValue = "1")  Integer page,
+                                                  @RequestParam(required = false)  Integer language,
+                                                  @RequestParam(required = false) Integer id,
+                                                  @RequestParam(required = false) String title,
+                                                  @RequestParam(required = false) Integer release_year,
+                                                  @RequestParam(required = false) BigDecimal rental_duration,
+                                                  @RequestParam(required = false) BigDecimal rental_rate,
+                                                  @RequestParam(required = false) BigDecimal replacement_costs) {
+        FilmDto film = FilmDto.builder()
+                .id(id)
+                .title(title)
+                .releaseYear(release_year)
+                .rentalDuration(rental_duration)
+                .rentalRate(rental_rate)
+                .replacementCosts(replacement_costs)
+                .language(LanguageDto.builder().id(language).name("").build()).build();
+
+
+        return ResponseEntity.ok(filmsRepository.getFilmsByPage(page, 10,film));
     }
 
     @PostMapping
-    public ResponseEntity saveFilm(@RequestBody FilmDto film){
-        films.add(film);
-        return ResponseEntity
-                .noContent()
-                .header("test", "test")
-                .build();
+    public ResponseEntity<HttpStatus> createFilm(@RequestBody FilmDto newFilm) {
+        if (newFilm.getLanguage().getId() == 7) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+        }
+        return ResponseEntity.status(filmsRepository.createFilm(newFilm)).build();
+
     }
 
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteFilm(@PathVariable int id) {
+        return ResponseEntity.status(filmsRepository.deleteFilmById(id)).build();
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<HttpStatus> updateFilm(@PathVariable int id, @RequestBody FilmDto film) {
+        return ResponseEntity.status(filmsRepository.updateFilm(film)).build();
+    }
 }
