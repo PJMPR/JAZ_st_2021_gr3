@@ -1,18 +1,11 @@
 package com.example.demo.BuilderPatternDemo;
-
 import com.example.demo.contracts.LanguageDto;
-import com.example.demo.model.Language;
-import com.example.demo.repositories.LanguageRepository;
 import com.example.demo.services.LanguageService;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @Getter
@@ -65,7 +58,6 @@ public class QueryBuilder  {
         addToQuery("film.language = "+languageID );
 
     }
-
 
     private void whereANDhandler(int amountOfParamsInQuery) {
         if(amountOfParamsInQuery > 1){

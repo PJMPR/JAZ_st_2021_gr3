@@ -31,33 +31,15 @@ public class FilmsController {
         HashMapParamsFilms paramsMap = new HashMapParamsFilms(id,page,language,title,release_year,
                                                               rental_duration,rental_rate,replacement_costs);
 
-
-
-
-
         return ResponseEntity.ok(filmService.prepareFilms(paramsMap));
 
-
-        // new object( ) <- z parametrami
-        // uzupelniamy tym co dostalismy
-        // pozniej sprawdzic co nie jest nullem
-        // mapa obiektow <page, int> i tak dalej
-        // <title, spiderman
     }
-
-//    @GetMapping()
-//    public ResponseEntity getFilmspage(@RequestParam Integer page) {
-//        return ResponseEntity.ok(filmService.getFilmsPagepage(page));
-//
-//
-//    }
-
 
 
 
     @PostMapping
-    public ResponseEntity saveFilm(@RequestBody FilmDto film){
-        //films.add(film);
+    public ResponseEntity saveFilm(@RequestBody FilmDto filmdto){
+        filmService.addFilmToDB(filmdto);
         return ResponseEntity
                 .noContent()
                 .header("test", "test")

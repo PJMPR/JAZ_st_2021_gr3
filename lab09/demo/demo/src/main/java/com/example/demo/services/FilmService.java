@@ -76,4 +76,8 @@ public class FilmService {
         return PAGE_CAPACITY * page;
     }
 
+    public void addFilmToDB(FilmDto filmdto) {
+        Film film = filmdto.dtoTOEntity();
+        filmsRepository.save(film);
+    }
 }

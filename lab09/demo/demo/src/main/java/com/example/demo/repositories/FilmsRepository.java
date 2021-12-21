@@ -22,4 +22,8 @@ public class FilmsRepository{
                .setMaxResults(30)
                .getResultList();
     }
+
+    public void save(Film film) {
+        entityManager.persist(film);
+    }
 }

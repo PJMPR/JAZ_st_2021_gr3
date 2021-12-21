@@ -1,11 +1,15 @@
 package com.example.demo.contracts;
 
+import com.example.demo.model.Film;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,15 +24,16 @@ public class FilmDto {
     private BigDecimal rentalRate;
     private BigDecimal replacementCosts;
 
+    public Film dtoTOEntity( ){
+        Film film = new Film();
+
+        film.setTitle(this.getTitle());
+        film.setReleaseYear(this.getReleaseYear());
+        film.setRentalDuration(this.rentalDuration);
+        film.setRentalRate(this.rentalRate);
+        film.setReplacementCost(this.replacementCosts);
+        film.setLastUpdate(Timestamp.from(Instant.now()));
+        film.setLanguage(this.language.dtoToEntity());
+        return film;
+    }
 }
-/*
-* export interface Film{
-    id:number,
-    title:string,
-    releaseYear?:number,
-    language?:Language,
-    rentalDuration?:number,
-    rentalRate?:number,
-    replacementCosts?:number
-}
-* */
