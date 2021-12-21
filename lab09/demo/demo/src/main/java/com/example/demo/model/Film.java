@@ -3,6 +3,7 @@ package com.example.demo.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 public class Film {
@@ -14,6 +15,20 @@ public class Film {
     private BigDecimal replacementCost;
     private Timestamp lastUpdate;
     private Language language;
+
+    public Film() {
+    }
+
+    public Film(Integer filmId, String title, Integer releaseYear, Integer rentalDuration, BigDecimal rentalRate, BigDecimal replacementCost, Timestamp lastUpdate, Language language) {
+        this.filmId = filmId;
+        this.title = title;
+        this.releaseYear = releaseYear;
+        this.rentalDuration = rentalDuration;
+        this.rentalRate = rentalRate;
+        this.replacementCost = replacementCost;
+        this.lastUpdate = lastUpdate;
+        this.language = language;
+    }
 
     @Id
     @Column(name = "film_id")
@@ -92,15 +107,15 @@ public class Film {
 
         Film film = (Film) o;
 
-        if (filmId != null ? !filmId.equals(film.filmId) : film.filmId != null) return false;
-        if (title != null ? !title.equals(film.title) : film.title != null) return false;
-        if (releaseYear != null ? !releaseYear.equals(film.releaseYear) : film.releaseYear != null) return false;
-        if (rentalDuration != null ? !rentalDuration.equals(film.rentalDuration) : film.rentalDuration != null)
+        if (!Objects.equals(filmId, film.filmId)) return false;
+        if (!Objects.equals(title, film.title)) return false;
+        if (!Objects.equals(releaseYear, film.releaseYear)) return false;
+        if (!Objects.equals(rentalDuration, film.rentalDuration))
             return false;
-        if (rentalRate != null ? !rentalRate.equals(film.rentalRate) : film.rentalRate != null) return false;
-        if (replacementCost != null ? !replacementCost.equals(film.replacementCost) : film.replacementCost != null)
+        if (!Objects.equals(rentalRate, film.rentalRate)) return false;
+        if (!Objects.equals(replacementCost, film.replacementCost))
             return false;
-        if (lastUpdate != null ? !lastUpdate.equals(film.lastUpdate) : film.lastUpdate != null) return false;
+        if (!Objects.equals(lastUpdate, film.lastUpdate)) return false;
 
         return true;
     }

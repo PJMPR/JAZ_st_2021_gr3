@@ -11,6 +11,14 @@ public class Language {
     private Timestamp lastUpdate;
     private Collection<Film> films;
 
+    public Language() {
+    }
+
+    public Language(Integer languageId, String name) {
+        this.languageId = languageId;
+        this.name = name;
+    }
+
     @Id
     @Column(name = "language_id")
     public Integer getLanguageId() {
