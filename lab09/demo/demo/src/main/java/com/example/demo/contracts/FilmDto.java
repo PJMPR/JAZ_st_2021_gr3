@@ -26,7 +26,7 @@ public class FilmDto {
 
     public Film dtoTOEntity( ){
         Film film = new Film();
-
+        film.setFilmId(this.getId());
         film.setTitle(this.getTitle());
         film.setReleaseYear(this.getReleaseYear());
         film.setRentalDuration(this.rentalDuration);

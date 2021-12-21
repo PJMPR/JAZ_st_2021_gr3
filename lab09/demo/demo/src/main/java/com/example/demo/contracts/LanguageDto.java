@@ -19,7 +19,6 @@ public class LanguageDto {
 
     public Language dtoToEntity(){
         Language language = new Language();
-        language.setLanguageId(this.id);
         language.setName(this.name);
         language.setLastUpdate(Timestamp.from(Instant.now()));
         return language;

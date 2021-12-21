@@ -12,7 +12,9 @@ public class Language {
     private Collection<Film> films;
 
     @Id
-    @Column(name = "language_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic
+    @Column(name = "language_id",unique=true, nullable = false)
     public Integer getLanguageId() {
         return languageId;
     }

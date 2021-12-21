@@ -1,6 +1,6 @@
 package com.example.demo.repositories;
 
-import com.example.demo.contracts.FilmDto;
+
 import com.example.demo.model.Film;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -24,6 +24,11 @@ public class FilmsRepository{
     }
 
     public void save(Film film) {
+        entityManager.getTransaction().begin();
+        entityManager.flush();
+        entityManager.clear();
         entityManager.persist(film);
+
+
     }
 }

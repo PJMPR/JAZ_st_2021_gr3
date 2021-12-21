@@ -16,7 +16,9 @@ public class Film {
     private Language language;
 
     @Id
-    @Column(name = "film_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "film_id",unique=true, nullable = false)
     public Integer getFilmId() {
         return filmId;
     }
