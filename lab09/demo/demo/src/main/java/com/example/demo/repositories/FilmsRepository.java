@@ -24,10 +24,10 @@ public class FilmsRepository{
     }
 
     public void save(Film film) {
-        entityManager.getTransaction().begin();
+//        entityManager.getTransaction().begin();
         entityManager.flush();
-        entityManager.clear();
-        entityManager.persist(film);
+//        entityManager.clear();
+//        entityManager.persist(film);
 
 
     }
