@@ -6,6 +6,7 @@ import com.example.demo.contracts.FilmDto;
 import com.example.demo.contracts.LanguageDto;
 import com.example.demo.model.Film;
 import com.example.demo.repositories.FilmsRepository;
+import com.example.demo.repositories.LanguageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,48 +19,43 @@ public class FilmService {
     private final FilmsRepository filmsRepository;
     private final QueryBuilder queryBuilder;
     private final int PAGE_CAPACITY = 30;
-    private int amountOfParamsInQuery = 0;
 
 
     public List<FilmDto> prepareFilms(HashMapParamsFilms paramsMap) {
         paramsMap.showAll();
 
         if(paramsMap.getIntegersValues().get("id") != null){
-            prepareQuery("id",paramsMap);
+            queryBuilder.prepareQuery("id",paramsMap);
         }
         if(paramsMap.getIntegersValues().get("releaseYear") != null){
-            prepareQuery("releaseYear",paramsMap);
+            queryBuilder.prepareQuery("releaseYear",paramsMap);
         }
         if(paramsMap.getIntegersValues().get("rentalDuration") != null){
-            prepareQuery("rentalDuration",paramsMap);
+            queryBuilder.prepareQuery("rentalDuration",paramsMap);
         }
         if(paramsMap.getBigDecimalValues().get("rentalRate") != null){
-            prepareQuery("rentalRate",paramsMap);
+            queryBuilder.prepareQuery("rentalRate",paramsMap);
         }
         if(paramsMap.getBigDecimalValues().get("replacementCost") != null){
-            prepareQuery("replacementCost",paramsMap);
+            queryBuilder.prepareQuery("replacementCost",paramsMap);
         }
         if(paramsMap.getStringValue() != null){
             if(!paramsMap.getStringValue().equals("")){
-                prepareTitleQuery(paramsMap.getStringValue());
+                queryBuilder.prepareTitleQuery(paramsMap.getStringValue());
             }
         }
         if(paramsMap.getLanguageValue() != null){
-            System.out.println("TO language " + paramsMap.getLanguageValue().getName());
-
-//            amountOfParamsInQuery++;
-//            prepareQuery("language",paramsMap);
-            // zapytanie do repo Language
+            queryBuilder.prepareLanguageQuery(paramsMap.getLanguageValue().getName());
         }
 
         List<Film> films = filmsRepository.executeQuery(queryBuilder.getQuery(),recordsToSkip(paramsMap));
-        clearQuery();
+        queryBuilder.clear();
 
 
         return films.stream().map(film -> new FilmDto(film.getFilmId(),
                             film.getTitle(),
                             film.getReleaseYear(),
-                            new LanguageDto(film.getLanguage().getLanguageId(), film.getTitle()),
+                            new LanguageDto(film.getLanguage().getLanguageId(), film.getLanguage().getName()),
                             film.getRentalDuration(),
                             film.getRentalRate(),
                             film.getReplacementCost()))
@@ -67,18 +63,6 @@ public class FilmService {
 
     }
 
-    private void prepareTitleQuery( String title) {
-        amountOfParamsInQuery++;
-
-        if(amountOfParamsInQuery > 1){
-            queryBuilder.addAND();
-        }else {
-            queryBuilder.addWhere();
-        }
-
-        queryBuilder.addToQuery("film.title LIKE '" +title +"%'");
-
-    }
 
 
     private int recordsToSkip(HashMapParamsFilms paramsMap) {
@@ -92,27 +76,4 @@ public class FilmService {
         return PAGE_CAPACITY * page;
     }
 
-    private void prepareQuery(String key, HashMapParamsFilms paramsMap) {
-        System.out.println();
-        System.out.println("AMOUNT OF PARAMS IN QUERY IS " + amountOfParamsInQuery);
-        System.out.println("INFO INFO INFO ");
-        System.out.println();
-
-        amountOfParamsInQuery++;
-        if(amountOfParamsInQuery > 1){
-            queryBuilder.addAND();
-        }else {
-            queryBuilder.addWhere();
-        }
-
-        queryBuilder.addToQuery("film." + key + " = " + paramsMap.findValue(key));
-
-    }
-
-
-    private void clearQuery() {
-        System.out.println("QUERY = " +queryBuilder.getQuery());
-        queryBuilder.clear();
-        amountOfParamsInQuery = 0;
-    }
 }

@@ -1,11 +1,25 @@
 package com.example.demo.BuilderPatternDemo;
 
+import com.example.demo.contracts.LanguageDto;
+import com.example.demo.model.Language;
+import com.example.demo.repositories.LanguageRepository;
+import com.example.demo.services.LanguageService;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @Getter
 public class QueryBuilder  {
+    @Autowired
+    private LanguageService languageService;
+    private int amountOfParamsInQuery = 0;
     private String query = "SELECT film FROM Film film ";
     private final String AND = "AND ";
 
@@ -21,7 +35,44 @@ public class QueryBuilder  {
     }
 
     public void clear() {
+        System.out.println("QUERY = " + getQuery());
+
         query = "SELECT film FROM Film film ";
+        amountOfParamsInQuery = 0;
     }
 
+    public void prepareTitleQuery(String title) {
+        amountOfParamsInQuery++;
+        whereANDhandler(amountOfParamsInQuery);
+        addToQuery("film.title LIKE '" +title +"%' ");
+
+    }
+
+    public void prepareQuery(String key, HashMapParamsFilms paramsMap) {
+        amountOfParamsInQuery++;
+        whereANDhandler(amountOfParamsInQuery);
+        addToQuery("film." + key + " = " + paramsMap.findValue(key));
+    }
+
+
+    public void prepareLanguageQuery(String languageName) {
+        amountOfParamsInQuery++;
+        whereANDhandler(amountOfParamsInQuery);
+
+        List<LanguageDto> list = languageService.getLanguagesBYName(languageName);
+
+        int languageID = list.get(0).getId();
+        addToQuery("film.language = "+languageID );
+
+    }
+
+
+    private void whereANDhandler(int amountOfParamsInQuery) {
+        if(amountOfParamsInQuery > 1){
+            addAND();
+        }
+        else {
+            addWhere();
+        }
+    }
 }

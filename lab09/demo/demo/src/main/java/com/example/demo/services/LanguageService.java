@@ -19,4 +19,10 @@ public class LanguageService {
                                             language.getLanguageId(),language.getName()))
                                             .collect(Collectors.toList());
     }
+
+    public List<LanguageDto> getLanguagesBYName(String languageName) {
+        return    languageRepository.findAllByName(languageName).stream()
+                .map(language1 -> new LanguageDto(language1.getLanguageId(),language1.getName()))
+                .collect(Collectors.toList());
+    }
 }

@@ -13,7 +13,6 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class FilmsRepository{
-    private final int PAGE_CAPACITY = 30;
     private final EntityManager entityManager;
 
 
