@@ -1,16 +1,13 @@
 package com.example.demo.contracts;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class LanguageDto {
-
-    public Integer id;
-    public String name;
+    private Integer id;
+    private String name;
 }
