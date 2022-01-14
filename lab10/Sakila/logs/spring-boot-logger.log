@@ -1,0 +1,20 @@
+2022-01-14 16:46:18,786 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SakilaBusinessLogicApplication using Java 17.0.1 on DESKTOP-ION2D5D with PID 21952 (C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila\sakila-business-logic\target\classes started by Hubert in C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila)
+2022-01-14 16:46:18,824 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2022-01-14 16:46:18,877 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-01-14 16:46:19,623 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-01-14 16:46:19,642 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SakilaBusinessLogicApplication in 1.224 seconds (JVM running for 2.196)
+2022-01-14 16:47:25,993 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SakilaBusinessLogicApplication using Java 17.0.1 on DESKTOP-ION2D5D with PID 18976 (C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila\sakila-business-logic\target\classes started by Hubert in C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila)
+2022-01-14 16:47:25,997 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2022-01-14 16:47:26,044 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-01-14 16:47:26,549 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-01-14 16:47:26,564 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SakilaBusinessLogicApplication in 0.949 seconds (JVM running for 1.415)
+2022-01-14 16:52:43,504 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SakilaBusinessLogicApplication using Java 17.0.1 on DESKTOP-ION2D5D with PID 20308 (C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila\sakila-business-logic\target\classes started by Hubert in C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila)
+2022-01-14 16:52:43,507 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2022-01-14 16:52:43,567 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-01-14 16:52:44,074 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-01-14 16:52:44,090 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SakilaBusinessLogicApplication in 0.906 seconds (JVM running for 1.423)
+2022-01-14 17:26:29,792 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SakilaBusinessLogicApplication using Java 17.0.1 on DESKTOP-ION2D5D with PID 24388 (C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila\sakila-business-logic\target\classes started by Hubert in C:\Users\Hubert\Desktop\Nowy folder (2)\lab10\Sakila)
+2022-01-14 17:26:29,795 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2022-01-14 17:26:29,841 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-01-14 17:26:30,363 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2022-01-14 17:26:30,376 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SakilaBusinessLogicApplication in 0.889 seconds (JVM running for 1.401)
