@@ -20,10 +20,9 @@ public class CustomersServices {
 
     public List<CustomerValueDto<Double>> getCustomersWithMostSpentMoney() {
         var customers = customersRepository
-                .customersThatSpentMoney(10)
-                ;
+                .customersThatSpentMoney(10);
         var result = customers.stream()
-                .map(c->
+                .map(c ->
                         new CustomerValueDto<Double>(
                                 c.spentMoney(),
                                 new CustomerDto(c.getId(), c.getFirstName(), c.getLastName())))
@@ -31,20 +30,18 @@ public class CustomersServices {
         return result;
     }
 
-    public byte[] getChartForMostSpent(RequestedChartTypes chartType)  {
+    public byte[] getChartForMostSpent(RequestedChartTypes chartType) {
         var customers = getCustomersWithMostSpentMoney();
         var series =
                 customers
                         .stream()
-                        .map(x->new SeriesValue(
-                                String.format("%s %s",x.getCustomer().getFirstName(),x.getCustomer().getLastName()),
+                        .map(x -> new SeriesValue(
+                                String.format("%s %s", x.getCustomer().getFirstName(), x.getCustomer().getLastName()),
                                 x.getValue()))
-                        .collect(Collectors.toList())
-                ;
+                        .collect(Collectors.toList());
         return chartType
                 .getBytes(chartCreator, new Series("Most Spent", series));
     }
-
 
 
 }

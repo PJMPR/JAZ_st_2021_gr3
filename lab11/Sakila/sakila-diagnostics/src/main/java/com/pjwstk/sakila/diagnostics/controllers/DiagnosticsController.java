@@ -13,18 +13,18 @@ import java.util.List;
 public class DiagnosticsController {
 
     @GetMapping("status")
-    public ResponseEntity isAlive(){
+    public ResponseEntity isAlive() {
         return ResponseEntity.ok("ALIVE");
     }
 
     @GetMapping("selftest")
-    public ResponseEntity selfTest(){
+    public ResponseEntity selfTest() {
         return ResponseEntity.ok(List.of(
-                new SelfTestResult("CheckStorageForLogs","", true, null),
-                new SelfTestResult("CheckStorageForLogs","", true, null),
-                new SelfTestResult("CheckStorageForLogs","", true, null),
-                new SelfTestResult("CheckStorageForLogs","", true, null)
-                ));
+                new SelfTestResult("CheckStorageForLogs", "", true, null),
+                new SelfTestResult("CheckStorageForLogs", "", true, null),
+                new SelfTestResult("CheckStorageForLogs", "", true, null),
+                new SelfTestResult("CheckStorageForLogs", "", true, null)
+        ));
     }
 
 }
