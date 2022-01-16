@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/lab12.iml" filepath="$PROJECT_DIR$/.idea/lab12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sakila/sakila-business-logic/sakila-business-logic.iml" filepath="$PROJECT_DIR$/Sakila/sakila-business-logic/sakila-business-logic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sakila/sakila-data/sakila-data.iml" filepath="$PROJECT_DIR$/Sakila/sakila-data/sakila-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sakila/sakila-diagnostics/sakila-diagnostics.iml" filepath="$PROJECT_DIR$/Sakila/sakila-diagnostics/sakila-diagnostics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sakila/sakila-diagnostics-service/sakila-diagnostics-service.iml" filepath="$PROJECT_DIR$/Sakila/sakila-diagnostics-service/sakila-diagnostics-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sakila/sakila-films-updater/sakila-films-updater.iml" filepath="$PROJECT_DIR$/Sakila/sakila-films-updater/sakila-films-updater.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sakila/sakila-report-service/sakila-report-service.iml" filepath="$PROJECT_DIR$/Sakila/sakila-report-service/sakila-report-service.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-business-logic/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-business-logic/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-data/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-data/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-diagnostics-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-diagnostics/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-diagnostics/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-films-updater/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-report-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Sakila/sakila-report-service/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
