@@ -11,9 +11,17 @@ public class ServiceInformation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String serviceName;
+    private String nameOfService;
     private String host;
     private boolean isWorking;
+
+    public ServiceInformation(long l, String nameOfService, String hostOfService, boolean b) {
+
+    }
+
+    public ServiceInformation() {
+
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -23,12 +31,12 @@ public class ServiceInformation {
         return id;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getNameOfService() {
+        return nameOfService;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setNameOfService(String nameOfService) {
+        this.nameOfService = nameOfService;
     }
 
     public String getHost() {
